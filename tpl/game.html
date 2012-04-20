@@ -1,15 +1,30 @@
+<%
+	var font = 'font-family:sans-serif;font-size:12px;'
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<title>Hello</title>
 </head>
-<body>
-	<br /><br /><br /><br />
+<body style="width:600px;margin:0 auto;">
+	<form action="" method="post" style="margin-left:40px;">
+		<p>
+			<input type="text" name="command-player-1" value="" id="command-player-1" />
+			<input type="submit" value="PLAYER 1" />
+		</p>
+	</form>
+	<form action="" method="post" style="margin-left:40px;">
+		<p>
+			<input type="text" name="command-player-2" value="" id="command-player-2" />
+			<input type="submit" value="PLAYER 2" />
+		</p>
+	</form>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
 	<% var skin; %>
 	<% for (var i=0; i < terrain.length; i++) { %>
 		<tr>
+			<td width="40" style="<%= font %>text-align:center;"><b><%=i+1 %></b></td>
 			<% for (var j=0; j < terrain[i].length; j++) { %>
 				<td width="40" height="30">
 					<img src="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif" width="40" height="30" alt="" style="display:block" />
@@ -18,6 +33,5 @@
 		</tr>
 	<% } %>
 	</table>
-
 </body>
 </html>
