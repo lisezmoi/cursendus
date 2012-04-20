@@ -3,6 +3,9 @@
     "moon": "sky-moon",
     "sky": ["sky-1"],
     "horizon": ["top-1", "top-2"],
-    "ground": ["ground-1", "ground-2", "ground-3", "ground-4", "ground-4", "ground-4", "ground-4", "ground-4", "ground-4", "ground-4", "ground-4", "ground-4"]
+    "ground": [
+      "ground-1", "ground-1", "ground-1", "ground-1", "ground-1", "ground-1", "ground-1", "ground-1", "ground-1", "ground-1", "ground-1",
+      "ground-2", "ground-3", "ground-4"
+    ]
   }
 }
