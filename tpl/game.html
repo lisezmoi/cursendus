@@ -1,13 +1,14 @@
 <%
-	var font = 'font-family:sans-serif;font-size:12px;'
+	var font = 'font-family:serif, sans-serif;font-size:10px;color:#666;font-weight:normal;'
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<title>Hello</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>⦶ CursenduS ⦶</title>
 </head>
-<body style="width:600px;margin:0 auto;">
+<body style="width:600px;margin:0 auto; background:#000;">
 	<form action="" method="post" style="margin-left:40px;">
 		<p>
 			<input type="text" name="command-player-1" value="" id="command-player-1" />
@@ -21,13 +22,19 @@
 		</p>
 	</form>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+			<td width="600" height="40px" style="background-color:#444; text-align:center;">
+			header
+			</td>
+		</tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" align="center">
 	<% var skin; %>
 	<% for (var i=0; i < terrain.length; i++) { %>
 		<tr>
 			<td width="40" style="<%= font %>text-align:center;"><b><%=i+1 %></b></td>
 			<% for (var j=0; j < terrain[i].length; j++) { %>
-				<td width="40" height="30">
-					<img src="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif" width="40" height="30" alt="" style="display:block" />
+				<td width="40" height="30" style="border-left-width:1px; border-left-style:dotted; border-left-color:#051A02; border-bottom-width:1px; border-bottom-style:dotted; border-bottom-color:#051A02;" background="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
 				</td>
 			<% } %>
 		</tr>
