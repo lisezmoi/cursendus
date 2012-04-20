@@ -1,4 +1,4 @@
 Cursendus
 =========
 
-Wizard battle game through email.
+Sorcerer battle game through email.
