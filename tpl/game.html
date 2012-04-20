@@ -1,23 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%
+	var font = 'font-family:serif, sans-serif;font-size:10px;color:#666;font-weight:normal;'
+%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>⦶ CursenduS ⦶</title>
 </head>
-<body>
-	<br /><br /><br /><br />
-	<table cellpadding="0" cellspacing="0" align="center" background="#cccccc">
+<body style="width:600px;margin:0 auto; background:#000;">
+	<form action="" method="post" style="margin-left:40px;">
+		<p>
+			<input type="text" name="command-player-1" value="" id="command-player-1" />
+			<input type="submit" value="PLAYER 1" />
+		</p>
+	</form>
+	<form action="" method="post" style="margin-left:40px;">
+		<p>
+			<input type="text" name="command-player-2" value="" id="command-player-2" />
+			<input type="submit" value="PLAYER 2" />
+		</p>
+	</form>
+	<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+			<td width="600" height="40px" style="background-color:#444; text-align:center;">
+			header
+			</td>
+		</tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" align="center">
 	<% var skin; %>
 	<% for (var i=0; i < terrain.length; i++) { %>
 		<tr>
+			<td width="40" style="<%= font %>text-align:center;"><b><%=i+1 %></b></td>
 			<% for (var j=0; j < terrain[i].length; j++) { %>
-				<td width="40" height="30" style="border-left:1px solid #17125B;border-bottom:1px solid #17125B;" background="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
+				<td width="40" height="30" style="border-left-width:1px; border-left-style:dotted; border-left-color:#051A02; border-bottom-width:1px; border-bottom-style:dotted; border-bottom-color:#051A02;" background="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
 				</td>
 			<% } %>
 		</tr>
 	<% } %>
 	</table>
-
 </body>
 </html>
