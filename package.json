@@ -9,6 +9,8 @@
   },
   "main": "index.js",
   "dependencies": {
+    "connect": "2.1",
+    "ejs": "0.7",
     "hiredis": "0.1",
     "redis": "0.7.1",
     "underscore": "1.3",
