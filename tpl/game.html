@@ -7,20 +7,50 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>⦶ CursenduS ⦶</title>
+	<style>
+		/* HTTP specific styles */
+		#debug {
+			overflow: hidden;
+		}
+		form {
+			float: left;
+			width: 250px;
+		}
+		form + form {
+			float: right;
+		}
+		textarea {
+			width: 248px;
+			height: 100px;
+			resize: none;
+		}
+		button[type=submit] {
+			display: block;
+			width: 150px;
+			margin: 0 auto;
+			font-size: 18px;
+			line-height: 40px;
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body style="width:600px;margin:0 auto; background:#000;">
-	<form action="" method="post" style="margin-left:40px;">
-		<p>
-			<input type="text" name="command-player-1" value="" id="command-player-1" />
-			<input type="submit" value="PLAYER 1" />
-		</p>
-	</form>
-	<form action="" method="post" style="margin-left:40px;">
-		<p>
-			<input type="text" name="command-player-2" value="" id="command-player-2" />
-			<input type="submit" value="PLAYER 2" />
-		</p>
-	</form>
+	<div id="debug">
+		<form action="" method="post">
+			<p>
+				<textarea name="command-player-1" rows="8" cols="40">move [S]
+hit [B4] with [flames]</textarea>
+				<button type="submit">Player 1</button>
+			</p>
+		</form>
+		<form action="" method="post">
+			<p>
+				<textarea name="command-player-2" rows="8" cols="40">move [S]
+hit [B4] with [flames]</textarea>
+				<button type="submit">Player 2</button>
+			</p>
+		</form>
+	</div>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
 		<tr>
 			<td width="600" height="40px" style="background-color:#444; text-align:center;">
@@ -50,8 +80,16 @@
 				</td>
 				<% } %>
 			<% } %>
+			<td width="26" height="30" style="<%= font %>text-align:center;"><b><%=i+1 %></b></td>
 		</tr>
 	<% } %>
+	<tr>
+		<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
+			<td width="20"></td>
+		<% for (var i=0; i < terrain[0].length; i++) { %>
+			<td width="41" height="20" style="<%= font %>text-align:center;"><b><%= letters[i] %></b></td>
+		<% } %>
+	</tr>
 	</table>
 </body>
 </html>
