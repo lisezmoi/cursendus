@@ -41,20 +41,19 @@
 		<form action="" method="post">
 			<p>
 				<textarea name="command-player-1" rows="8" cols="40">move [S]
-hit [B4] with [flames]</textarea>
-				<button type="submit">Player 1</button>
+cast [L18]</textarea>
+				<button type="submit" style="color:#7b2d6b">Amthyst</button>
 			</p>
 		</form>
 		<form action="" method="post">
 			<p>
-				<textarea name="command-player-2" rows="8" cols="40">move [S]
-hit [B4] with [flames]</textarea>
-				<button type="submit">Player 2</button>
+				<textarea name="command-player-2" rows="8" cols="40">move [N]
+cast [B7]</textarea>
+				<button type="submit">Dr. Black</button>
 			</p>
 		</form>
 	</div>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
-
 		<tr>
 			<td width="10" style="background-color:#444444;"></td>
 			<td width="190" height="40" style="background-color:#444444; color:#ffffff; text-align:left;">
@@ -62,11 +61,11 @@ hit [B4] with [flames]</textarea>
 			</td>
 			<td width="10" style="background-color:#444444;"></td>
 			<td width="190" height="40" style="background-color:#444444; color:#ffffff; text-align:left;">
-				Violetton: <%= player1.health %>HP
+				Amthyst: <%= player1.health %>HP
 			</td>
 			<td width="10" style="background-color:#444444;"></td>
 			<td width="190" height="40" style="background-color:#444444; color:#ffffff; text-align:left;">
-				Darkonoir: <%= player2.health %>HP
+				Dr. Black: <%= player2.health %>HP
 			</td>
 		</tr>
 		<tr>
@@ -74,14 +73,14 @@ hit [B4] with [flames]</textarea>
 		</tr>
 	</table>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
-	<tr>
-		<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
-			<td width="20"></td>
-		<% for (var i=0; i < terrain[0].length; i++) { %>
-			<td width="41" height="20" background="//localhost:3001/tabletab-north.gif" style="<%= font %>text-align:center;"><b><%= letters[i] %></b></td>
-		<% } %>
-	</tr>
-	<% for (var i=0; i < terrain.length; i++) { %>
+		<tr>
+			<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
+				<td width="20"></td>
+			<% for (var i=0; i < terrain[0].length; i++) { %>
+				<td width="41" height="20" background="//localhost:3001/tabletab-north.gif" style="<%= font %>text-align:center;"><b><%= letters[i] %></b></td>
+			<% } %>
+		</tr>
+		<% for (var i=0; i < terrain.length; i++) { %>
 		<tr>
 			<td width="26" height="30" background="//localhost:3001/tabletab-west.gif" style="<%= font %>text-align:center;"><b><%=i+1 %></b></td>
 			<% for (var j=0; j < terrain[i].length; j++) { %>
@@ -96,14 +95,14 @@ hit [B4] with [flames]</textarea>
 			<% } %>
 			<td width="26" height="30" background="//localhost:3001/tabletab-est.gif" style="<%= font %>text-align:center;"><b><%=i+1 %></b></td>
 		</tr>
-	<% } %>
-	<tr>
-		<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
-			<td width="20"></td>
-		<% for (var i=0; i < terrain[0].length; i++) { %>
-			<td width="41" height="20" background="//localhost:3001/tabletab-south.gif" style="<%= font %>text-align:center;"><b><%= letters[i] %></b></td>
 		<% } %>
-	</tr>
+		<tr>
+			<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
+				<td width="20"></td>
+			<% for (var i=0; i < terrain[0].length; i++) { %>
+				<td width="41" height="20" background="//localhost:3001/tabletab-south.gif" style="<%= font %>text-align:center;"><b><%= letters[i] %></b></td>
+			<% } %>
+		</tr>
 	</table>
 </body>
 </html>
