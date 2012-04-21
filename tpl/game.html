@@ -12,6 +12,7 @@
 		/* HTTP specific styles */
 		#debug {
 			overflow: hidden;
+			margin-bottom: 20px;
 		}
 		form {
 			float: left;
@@ -22,7 +23,7 @@
 		}
 		textarea {
 			width: 248px;
-			height: 100px;
+			height: 40px;
 			resize: none;
 		}
 		button[type=submit] {
@@ -30,7 +31,7 @@
 			width: 150px;
 			margin: 0 auto;
 			font-size: 18px;
-			line-height: 40px;
+			line-height: 30px;
 			cursor: pointer;
 		}
 	</style>
@@ -55,9 +56,21 @@ hit [B4] with [flames]</textarea>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
 
 		<tr>
-			<td width="600" height="40px" style="background-color:#444; text-align:center;">
-			header
+			<td width="10" style="background-color:#444444;"></td>
+			<td width="190" height="40" style="background-color:#444444; color:#ffffff; text-align:left;">
+				Tour: <%= turn %>
 			</td>
+			<td width="10" style="background-color:#444444;"></td>
+			<td width="190" height="40" style="background-color:#444444; color:#ffffff; text-align:left;">
+				Violetton: <%= player1.health %>HP
+			</td>
+			<td width="10" style="background-color:#444444;"></td>
+			<td width="190" height="40" style="background-color:#444444; color:#ffffff; text-align:left;">
+				Darkonoir: <%= player2.health %>HP
+			</td>
+		</tr>
+		<tr>
+			<td width="600" height="20" colspan="6"></td>
 		</tr>
 	</table>
 	<table cellpadding="0" cellspacing="0" border="0" align="center">
