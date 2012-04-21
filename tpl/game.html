@@ -1,8 +1,8 @@
 <%
 	var fontserif = 'font-family:serif;font-size:10px;color:#999;font-weight:normal;',
 	fontsans = 'font-family:verdana, sans-serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
-	h2 = 'font-family:serif;font-size:20px;font-weight:normal;letter-spacing:1px;border-bottom:1px solid 	#222;',
-	fontinfo = 'font-family:serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
+	h2 = 'font-family:Times New Roman, serif;font-size:20px;font-weight:normal;letter-spacing:1px;border-bottom:1px solid 	#222;',
+	fontinfo = 'font-family:Times New Roman, serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
 	indent = '&nbsp; &nbsp;'
 %>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	<title>⌘ CursenduS ⌘</title>
+	<title>⌘ CursenduS</title>
 	<style>
 		/* HTTP specific styles */
 		#debug {
@@ -165,10 +165,10 @@ cast [B7]</textarea>
 					<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
 						<table>
 							<tr>
-								<td width="310" height="70" valign="bottom"><img src="//localhost:3001/hat-1-large.gif"></td>
+								<td width="320" height="70" valign="bottom"><img src="//localhost:3001/hat-1-large.gif"></td>
 							</tr>
 							<tr>
-								<td width="310" height="30"><span style="color:#C77AD3;">Amthyst</span> (you)
+								<td width="320" height="30"><span style="color:#C77AD3;">Amthyst</span> (you)
 								</td>
 							</tr>
 							<tr>
@@ -176,19 +176,19 @@ cast [B7]</textarea>
 								</td>
 							</tr>
 							<tr>
-								<td width="310">Position: <%= player1.position %>
+								<td width="320">Position: <%= player1.position %>
 								</td>
 							</tr>
 						</table>
 					</td>
 					<td width="10"></td>
-					<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
+					<td bgcolor="#282828" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
 						<table>
 							<tr>
-								<td width="250" height="70" valign="bottom"><img src="//localhost:3001/hat-2-large.gif"></td>
+								<td width="240" height="70" valign="bottom"><img src="//localhost:3001/hat-2-large.gif"></td>
 							</tr>
 							<tr>
-								<td width="250" height="30"><span style="color:#FFF;">Dr. Black</span>
+								<td width="240" height="30"><span style="color:#FFF;">Dr. Black</span>
 								</td>
 							</tr>
 							<tr>
@@ -196,12 +196,37 @@ cast [B7]</textarea>
 								</td>
 							</tr>
 							<tr>
-								<td width="250">Position: <%= player2.position %>
+								<td width="240">Position: <%= player2.position %>
 								</td>
 							</tr>
 						</table>
 					</td>
 					<td width="10"></td>
+				</tr>
+				<tr>
+					<td width="600" height="10" colspan="5"></td>
+				</tr>
+			</table>
+			<table class="title" cellpadding="0" cellspacing="0" border="0" align="center" style="<%= fontsans %>">
+				<tr>
+					<td width="190" height="40" style="text-align:center; <%= h2 %>">
+						History
+					</td>
+				</tr>
+				<tr>
+					<td width="600" height="20" colspan="6"></td>
+				</tr>
+			</table>
+
+
+			<table class="lastRounds" style="<%= fontsans %>" align="center">
+				<tr>
+					<td width="600" height="10"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
+						Foo
+					</td>
 				</tr>
 				<tr>
 					<td width="600" height="10" colspan="5"></td>
