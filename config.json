@@ -1,4 +1,5 @@
 {
+  "terrainDimensions": [14, 20],
   "skinTiles": {
     "moon": "sky-moon",
     "sky": ["sky-1"],

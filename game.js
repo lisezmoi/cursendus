@@ -18,9 +18,6 @@ function main() {
     .listen(3001);
 
   view.start(GameCore);
-  // view.on('new game', function(gameId) {
-  //
-  // });
 }
 
 if (require.main === module) {
