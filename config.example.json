@@ -1,4 +1,9 @@
 {
+  "emailParams": {
+    "email": "example@example.net",
+    "oauthToken": "token",
+    "oauthTokenSecret": "secret",
+  },
   "terrainDimensions": [13, 19],
   "skinTiles": {
     "moon": "sky-moon",

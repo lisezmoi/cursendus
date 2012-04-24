@@ -8,6 +8,7 @@ lib-cov
 *.gz
 *.tmproj
 .DS_Store
+config.json
 
 pids
 logs
