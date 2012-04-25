@@ -2,7 +2,7 @@
   "emailParams": {
     "email": "example@example.net",
     "oauthToken": "token",
-    "oauthTokenSecret": "secret",
+    "oauthTokenSecret": "secret"
   },
   "terrainDimensions": [13, 19],
   "skinTiles": {
