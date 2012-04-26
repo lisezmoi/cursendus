@@ -15,6 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 	<title>Cursendus</title>
+	<% if (mode === 'http') { %>
 	<style>
 		/* HTTP specific styles */
 		#debug {
@@ -43,8 +44,10 @@
 			cursor: pointer;
 		}
 	</style>
+	<% } %>
 </head>
 <body style="margin:0 auto;">
+	<% if (mode === 'http') { %>
 	<div id="debug">
 		<form action="" method="post">
 			<p>
@@ -63,6 +66,7 @@ cast [B7]</textarea>
 			</p>
 		</form>
 	</div>
+	<% } %>
 
 <table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" bgcolor="#000">
 	<tr>
@@ -77,7 +81,7 @@ cast [B7]</textarea>
 			<table cellpadding="0" cellspacing="0" border="0" align="center">
 				<tr>
 					<td height="164">
-						<img src="//localhost:3001/logo.gif">
+						<img src="http://localhost:3001/logo.gif">
 					</td>
 				</tr>
 			</table>
@@ -95,7 +99,7 @@ cast [B7]</textarea>
 						<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody Amthyst, a purple sorcerer and you are about to defy Dr. Black.
 					</td>
 					<td width="290" align="left" style="vertical-align:top;padding-left:10px;">
-						<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.<br/>
+						<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.<br>
 						If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
 					</td>
 				</tr>
@@ -113,30 +117,30 @@ cast [B7]</textarea>
 					<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
 						<td width="20"></td>
 					<% for (var i=0; i < terrain[0].length; i++) { %>
-						<td width="41" height="20" background="//localhost:3001/tabletab-north.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
+						<td width="41" height="20" background="http://localhost:3001/tabletab-north.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
 					<% } %>
 				</tr>
 				<% for (var i=0; i < terrain.length; i++) { %>
 				<tr>
-					<td width="26" height="30" background="//localhost:3001/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
+					<td width="26" height="30" background="http://localhost:3001/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
 					<% for (var j=0; j < terrain[i].length; j++) { %>
 						<% if (!terrain[i][j].occupied) { %>
 						<td<% if (terrain[i+1] && terrain[i+1][j].occupied) { %> rowspan="2" height="60"<% } else { %> height="30"<% } %> width="40"
-							background="//localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
+							background="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
 							<% if (terrain[i+1] && terrain[i+1][j].occupied) { %>
-							<img src="//localhost:3001/sorcerer-<%= terrain[i+1][j].occupied.skin %>.gif" width="40" height="60" alt="" style="display:block" />
+							<img src="http://localhost:3001/sorcerer-<%= terrain[i+1][j].occupied.skin %>.gif" width="40" height="60" alt="" style="display:block" />
 							<% } %>
 						</td>
 						<% } %>
 					<% } %>
-					<td width="26" height="30" background="//localhost:3001/tabletab-est.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
+					<td width="26" height="30" background="http://localhost:3001/tabletab-est.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
 				</tr>
 				<% } %>
 				<tr>
 					<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
 						<td width="20"></td>
 					<% for (var i=0; i < terrain[0].length; i++) { %>
-						<td width="41" height="20" background="//localhost:3001/tabletab-south.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
+						<td width="41" height="20" background="http://localhost:3001/tabletab-south.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
 					<% } %>
 				</tr>
 			</table>
@@ -169,7 +173,7 @@ cast [B7]</textarea>
 					<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
 						<table>
 							<tr>
-								<td width="320" height="70" valign="bottom"><img src="//localhost:3001/hat-1-large.gif"></td>
+								<td width="320" height="70" valign="bottom"><img src="http://localhost:3001/hat-1-large.gif"></td>
 							</tr>
 							<tr>
 								<td width="320" height="30"><span style="color:#C77AD3;">Amthyst</span> (you)
@@ -189,7 +193,7 @@ cast [B7]</textarea>
 					<td bgcolor="#282828" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
 						<table>
 							<tr>
-								<td width="240" height="70" valign="bottom"><img src="//localhost:3001/hat-2-large.gif"></td>
+								<td width="240" height="70" valign="bottom"><img src="http://localhost:3001/hat-2-large.gif"></td>
 							</tr>
 							<tr>
 								<td width="240" height="30"><span style="color:#FFF;">Dr. Black</span>
@@ -256,26 +260,30 @@ cast [B7]</textarea>
 				</tr>
 				<tr>
 					<td bgcolor="#333" style="text-align:left; border-style:double; border-width:5px; border-color:#000; padding:10px;">
-						<p align="center"><span style="font-size:15px; font-family:monospace;"> ⌘ </span><br/>Cusrendus is a sorcerer battle game based on email.<br/>
+						<p align="center"><span style="font-size:15px; font-family:monospace;"> ⌘ </span><br>Cusrendus is a sorcerer battle game based on email.<br>
 						</p>
 						<h4 style="<%= h4 %>">Open a battle</h4>
 							<p>To begin a game, send an email to your friend and add <a style="<%= link %>" href="mailto:play@cursend.us">play@cursend.us</a> to the recipient.</p>
 							<p>You will receive an email with the game and the rules. You will also discover the name of your character. Characters are randomly distributed.</p>
-							
+
 							<h4 style="<%= h4 %>">Play</h4>
+
 							<p>You are able to move and attack. To do so, answer to the initial email. Actions must be written at the very top of the email. Example:</p>
-							
-							<p style="<%=code %>">move south <br/>
-							attack F16</p>
-								
+							<p style="<%=code %>">
+								move south <br>
+								attack F16
+							</p>
+
 							<p>As a result of the previous lines, you character will move one square to the south and throw a cast to the square x=F y=16.</p>
 							
 							<h4 style="<%= h4 %>">Goal</h4>
 							<p>Try to attack your enemy by sending casts to cases. Each attack can take from 8 to 10 life points.</p>
 							
 							<h4 style="<%= h4 %>">Important</h4>
-							<p>⌘ Both players need to play before receiving the next round.<br/>⌘ An empty email is not valid.<br/>⌘ The rules are always available at the bottom of each email.</p>
-							
+							<p>- Both players need to play before receiving the next round.<br>
+							- An empty email is not valid.<br>
+							- The rules are always available at the bottom of each email.</p>
+
 							<h4 style="<%= h4 %>">Credits</h4>
 							
 							<p>Website : <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br/>
