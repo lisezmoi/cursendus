@@ -1,4 +1,9 @@
 {
+  "assetsUrl": false,
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
   "emailParams": {
     "email": "example@example.net",
     "oauthToken": "token",

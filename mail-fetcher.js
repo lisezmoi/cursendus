@@ -1,15 +1,19 @@
 var util = require('util'),
+    conf = require('./config'),
     ImapConnection = require('imap').ImapConnection,
     mailparser = require('mailparser'),
     imap,
     spawn = require('child_process').spawn,
     xoauthProcess,
     xoauthParams = {
-      user: 'noreply@pierrebertet.net',
-      oauth_token: '1/LCms8uqk-Oov7g_q-Ol491jUcjEmyJBpr6YlivEn8G0',
-      oauth_token_secret: 'E5kDfAz6TN6xANHPAJQoo9JF'
+      user: conf.emailParams.email,
+      oauth_token: conf.emailParams.oauthToken,
+      oauth_token_secret: conf.emailParams.oauthTokenSecret
     },
-    xoauthEncoded;
+    xoauthEncoded,
+    redis = require('redis'),
+    pubsub = redis.createClient(),
+    fetchInterval = 2000;
 
 xoauthProcess = spawn('python', ['./tools/xoauth.py',
   '--generate_xoauth_string',
@@ -32,8 +36,8 @@ function init(xoauthEncoded) {
     host: 'imap.gmail.com',
     port: 993,
     secure: true,
-    xoauth: xoauthEncoded,
-    debug: function(msg) { console.log(msg); }
+    xoauth: xoauthEncoded
+    // debug: function(msg) { console.log(msg); }
   });
 
   function die(err) {
@@ -49,24 +53,28 @@ function init(xoauthEncoded) {
 
   function watchInbox(err, box) {
     imap.search(['UNSEEN'], function(err, results) {
+      var fetch;
       if (!results || !results.length) {
         console.log('No unread messages');
-        imap.logout();
-        setTimeout(imapConnect, 10000);
+        setTimeout(watchInbox, fetchInterval);
         return;
       }
 
-      // results = [results[0]];
-
-      var fetch = imap.fetch(results, { request: { body: 'full', headers: ['from', 'to', 'subject', 'date'] } });
+      fetch = imap.fetch(results, {
+        markSeen: true,
+        request: {
+          body: 'full',
+          headers: false,
+          struct: false
+        }
+      });
 
       fetch.on('message', function(msg) {
         newMessage(msg);
       });
       fetch.on('end', function() {
-        console.log('Done fetching all messages!');
-        imap.logout();
-        setTimeout(imapConnect, 10000);
+        console.log('end fetch');
+        setTimeout(watchInbox, fetchInterval);
       });
     });
   }
@@ -74,12 +82,13 @@ function init(xoauthEncoded) {
   function newMessage(message) {
     var parser = new mailparser.MailParser();
     parser.on('end', function(mail) {
-      console.log('NEW MAIL!!!');
-      console.log(mail);
+      console.log(mail)
+      pubsub.publish('game:emails', JSON.stringify(mail));
     });
-
     message.on('data', function(data) {
       parser.write(data.toString());
+    });
+    message.on('end', function() {
       parser.end();
     });
   }

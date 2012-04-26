@@ -1,21 +1,33 @@
 var Game = require('./lib/game'),
-    view = require('./lib/views/http'),
-    connect = require('connect'),
+    GamesManager = require('./lib/games-manager'),
+    view = require('./lib/views/smtp'),
+    redis = require('redis'),
+    rclient = redis.createClient(),
+    games,
     conf = require('./config'),
     init = false;
+
+function assetsServer() {
+  var connect = require('connect'),
+      server = connect();
+  server.use(connect.static('public'));
+  server.listen(3001);
+  conf.assetsUrl = 'http://localhost:3001/';
+}
 
 function main() {
   if (init) { return; }
   init = true;
 
-  Game.configure(conf);
-
   // Static files
-  connect()
-    .use(connect.static('public'))
-    .listen(3001);
+  if (!conf.assetsUrl) {
+    assetsServer();
+  }
 
-  view.start(Game);
+  // Games server
+  Game.DEFAULT_SETTINGS.skinTiles = conf.skinTiles;
+  games = new GamesManager(rclient, Game);
+  view.start(games, conf);
 }
 
 if (require.main === module) {
