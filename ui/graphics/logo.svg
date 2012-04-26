@@ -104,9 +104,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.20601381"
-     inkscape:cx="-659.84592"
-     inkscape:cy="-1176.0725"
+     inkscape:zoom="0.58269505"
+     inkscape:cx="463.42471"
+     inkscape:cy="76.58296"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -149,11 +149,11 @@
      id="layer1"
      transform="translate(-95.053059,-381.69075)">
     <g
-       inkscape:export-filename="/Users/raphael/Documents/WORK/PERSO/Cursendus/public website/img/logo.png"
+       inkscape:export-filename="/Users/raphael/Documents/WORK/PERSO/Cursendus/cursendus/ui/graphics/logo.png"
        transform="matrix(2.7391849,0,0,2.7391849,1135.9805,-5756.0935)"
        id="g4222"
-       inkscape:export-xdpi="146.95"
-       inkscape:export-ydpi="146.95">
+       inkscape:export-xdpi="151.35001"
+       inkscape:export-ydpi="151.35001">
       <path
          id="path4224"
          d="m -282.30837,2250.25 -0.34375,0.5312 -16.0625,23.5938 1.40625,0 14.59375,-21.0625 0,21.0625 0.78125,0 0,-21.125 14.625,21.125 1.375,0 -16.0625,-23.5938 -0.3125,-0.5312 z m -35.65625,52.375 -10.03125,14.7188 -0.28125,0.5 -0.0625,0.031 c 0,0 0.0307,0.03 0.0312,0.031 0.13279,0.1994 15.68691,23.4689 45.96875,23.4688 30.41192,0 46.03125,-23.4688 46.03125,-23.4688 l -0.375,-0.5624 -10.0312,-14.7184 -1,0 10.0625,14.5312 -44.28125,0 0,-14.5312 -0.78125,0 0,14.5312 -44.28125,0 10.09375,-14.5312 -1.0625,0 z m -8.96875,15.2812 44.21875,0 0,21.9063 c -27.515,-0.1755 -42.13108,-19.0107 -44.21875,-21.9063 z m 45,0 44.1875,0 c -2.10555,2.9181 -16.71196,21.7186 -44.1875,21.9063 l 0,-21.9063 z"
