@@ -14,8 +14,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	<title>CursenduS</title>
-
+	<title>Cursendus</title>
 	<% if (mode === 'http') { %>
 	<style>
 		/* HTTP specific styles */
@@ -97,11 +96,11 @@ cast [B7]</textarea>
 			<table cellpadding="0" cellspacing="0" border="0" align="center" style="<%= fontinfo %>">
 				<tr>
 					<td width="290" align="left" vertical-align="top" style="vertical-align:top; padding-right:10px; border-right:1px solid #222;">
-						<%= indent %> Congratulation, you have been invited to play to CursenduS, a sorcerer battle game through email. You embody Amthyst, a purple sorcerer and you are about to defy Dr. Black.
+						<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody Amthyst, a purple sorcerer and you are about to defy Dr. Black.
 					</td>
 					<td width="290" align="left" style="vertical-align:top;padding-left:10px;">
-						<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.</br>
-						If you don't want to receive this email anymore and leave this game, click this unsubscribe link.
+						<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.<br>
+						If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
 					</td>
 				</tr>
 			</table>
@@ -261,17 +260,18 @@ cast [B7]</textarea>
 				</tr>
 				<tr>
 					<td bgcolor="#333" style="text-align:left; border-style:double; border-width:5px; border-color:#000; padding:10px;">
-						<p align="center">Cusrendus is a sorcerer battle game based on email.
+						<p align="center"><span style="font-size:15px; font-family:monospace;"> ⌘ </span><br>Cusrendus is a sorcerer battle game based on email.<br>
 						</p>
 						<h3 style="<%= h3 %>">Open a battle</h3>
-							<p>Play Cursendus by inviting a friend using his email adress. To begin a game, send an email to your friend and add play@cursend.us in CC.</p>
+							<p>To begin a game, send an email to your friend and add <a style="<%= link %>" href="mailto:play@cursend.us">play@cursend.us</a> to the recipient.</p>
 							<p>Then you will receive an email with the game and the rules. You will also discover the name of your character. Characters are randomly distributed.</p>
 
 							<h3 style="<%= h3 %>">Play</h3>
 							<p>You are able to move and attack. To do so, answer to the initial email. Actions must be written at the very top of the email. Example:</p>
-
-							<p style="<%=code %>">move south </br>
-							attack F16</p>
+							<p style="<%=code %>">
+								move south <br>
+								attack F16
+							</p>
 
 							<p>As a result of the previous lines, you character will move one square to the south and throw a cast to the square x=F y=16.</p>
 
@@ -279,17 +279,19 @@ cast [B7]</textarea>
 							<p>Try to attack your enemy by sending casts to cases. Each attack can take from 8 to 10 life points.</p>
 
 							<h3 style="<%= h3 %>">Important</h3>
-							<p>Both players need to play before receiving the next round.
-							An empty email is not valid.</p>
-							<p>The rules are always available at the bottom of each email.</p>
-
-							<h3 style="<%= h3 %>">Legend</h3>
+							<p>
+								&#x2318; Both players need to play before receiving the next round.<br>
+								&#x2318; An empty email is not valid.<br>
+								&#x2318; The rules are always available at the bottom of each email.
+							</p>
 
 							<h3 style="<%= h3 %>">Credits</h3>
 
-							<p>Website : <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a></br>
-							Realisation : <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a></br>
-							Cursendus is a <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a></p>
+							<p>
+								Website: <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br>
+								Realisation: <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a><br>
+								Cursendus is <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a>
+							</p>
 					</td>
 				</tr>
 				<tr>
