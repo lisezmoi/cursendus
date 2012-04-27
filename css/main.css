@@ -3,7 +3,7 @@ html{
 	background:#38342C;
 }
 body{
-	background:black url(img/bg1.png) center -200px no-repeat;
+	background:black url(../img/bg1.png) center -200px no-repeat;
 	text-align:center;
 	font-family:"Della Respira", "Times new roman", serif;
 	padding:2%;
