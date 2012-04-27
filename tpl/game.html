@@ -4,16 +4,16 @@
 	h2 = 'font-family:Times New Roman, serif;font-size:20px;font-weight:normal;letter-spacing:1px;border-bottom:1px solid #222;',
 	h4 = 'font-family:Times New Roman, serif;font-size:16px;font-weight:normal;letter-spacing:1px;color:#C2C2C2;',
 	fontinfo = 'font-family:Times New Roman, serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
-	indent = '&nbsp; &nbsp;',
+	indent = '&nbsp;&nbsp;&nbsp;',
 	link = 'color:#ccc; text-decoration:none;',
 	code = 'font-family:courrier new, monospace; font-size:15px; padding:10px; background:#424242;';
 %>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cursendus</title>
 	<% if (mode === 'http') { %>
 	<style>
@@ -51,7 +51,7 @@
 	<div id="debug">
 		<form action="" method="post">
 			<p>
-				<input type="hidden" name="player" value="<%= player1.email %>" />
+				<input type="hidden" name="player" value="<%= player1.email %>">
 				<textarea name="command" rows="8" cols="40">move [S]
 cast [L18]</textarea>
 				<button type="submit" style="color:#7b2d6b">Amthyst</button>
@@ -59,7 +59,7 @@ cast [L18]</textarea>
 		</form>
 		<form action="" method="post">
 			<p>
-				<input type="hidden" name="player" value="<%= player2.email %>" />
+				<input type="hidden" name="player" value="<%= player2.email %>">
 				<textarea name="command" rows="8" cols="40">move [N]
 cast [B7]</textarea>
 				<button type="submit">Dr. Black</button>
@@ -71,17 +71,18 @@ cast [B7]</textarea>
 <table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" bgcolor="#000">
 	<tr>
 		<td>
-			<table class="margin" cellpadding="0" cellspacing="0" border="0" >
+			<table class="margin" cellpadding="0" cellspacing="0" border="0">
 				<tr>
-					<td height="20">
+					<td width="600" height="20">
+						<img src="http://localhost:3001/transparent.gif" width="600" height="1" alt="">
 					</td>
 				</tr>
 			</table>
 
 			<table cellpadding="0" cellspacing="0" border="0" align="center">
 				<tr>
-					<td height="164">
-						<img src="http://localhost:3001/logo.gif">
+					<td width="600" height="164">
+						<img src="http://localhost:3001/logo.gif" width="290" height="157" alt="Cursendus">
 					</td>
 				</tr>
 			</table>
