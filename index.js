@@ -1,6 +1,7 @@
 var Game = require('./lib/game'),
     GamesManager = require('./lib/games-manager'),
-    view = require('./lib/views/smtp'),
+    mailView = require('./lib/views/mail'),
+    httpView = require('./lib/views/http'),
     redis = require('redis'),
     rclient = redis.createClient(),
     games,
@@ -27,7 +28,8 @@ function main() {
   // Games server
   Game.DEFAULT_SETTINGS.skinTiles = conf.skinTiles;
   games = new GamesManager(rclient, Game);
-  view.start(games, conf);
+  mailView.start(games, conf);
+  httpView.start(games, conf);
 }
 
 if (require.main === module) {
