@@ -27,7 +27,17 @@ function main() {
 
   // Games server
   Game.DEFAULT_SETTINGS.skinTiles = conf.skinTiles;
-  games = new GamesManager(rclient, Game);
+  games = new GamesManager(rclient, Game, {
+    width: conf.terrainDimensions[0],
+    height: conf.terrainDimensions[1],
+    skinTiles: conf.skinTiles,
+    positions: {
+      p1: [0, conf.skyHeight+2],
+      p2: [conf.terrainDimensions[0]-1, conf.terrainDimensions[1]-1]
+    },
+    skyHeight: conf.skyHeight,
+    moonRow: conf.moonRow
+  });
   mailView.start(games, conf);
   httpView.start(games, conf);
 }

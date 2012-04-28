@@ -9,7 +9,9 @@
     "oauthToken": "token",
     "oauthTokenSecret": "secret"
   },
-  "terrainDimensions": [13, 19],
+  "terrainDimensions": [13, 16],
+  "skyHeight": 2,
+  "moonRow": 1,
   "skinTiles": {
     "moon": "sky-moon",
     "sky": ["sky-1", "sky-1", "sky-1", "sky-1", "sky-1", "sky-1", "sky-2"],
