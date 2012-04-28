@@ -1,19 +1,20 @@
 <%
 	var fontserif = 'font-family:serif;font-size:10px;color:#999;font-weight:normal;',
 	fontsans = 'font-family:verdana, sans-serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
-	h2 = 'font-family:Times New Roman, serif;font-size:20px;font-weight:normal;letter-spacing:1px;border-bottom:1px solid #222;',
+	h2 = 'font-family:Times New Roman, serif;font-size:20px;font-weight:normal;letter-spacing:1px;color:#999999;',
 	h4 = 'font-family:Times New Roman, serif;font-size:16px;font-weight:normal;letter-spacing:1px;color:#C2C2C2;',
 	fontinfo = 'font-family:Times New Roman, serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
-	indent = '&nbsp; &nbsp;',
+	indent = '&nbsp;&nbsp;&nbsp;',
 	link = 'color:#ccc; text-decoration:none;',
-	code = 'font-family:courrier new, monospace; font-size:15px; padding:10px; background:#424242;';
+	code = 'font-family:courrier new, monospace; font-size:15px; padding:10px; background:#424242;',
+	tablereset = 'cellpadding="0" cellspacing="0" border="0"';
 %>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cursendus</title>
 	<% if (mode === 'http') { %>
 	<style>
@@ -51,7 +52,7 @@
 	<div id="debug">
 		<form action="" method="post">
 			<p>
-				<input type="hidden" name="player" value="<%= player1.email %>" />
+				<input type="hidden" name="player" value="<%= player1.email %>">
 				<textarea name="command" rows="8" cols="40">move [S]
 cast [L18]</textarea>
 				<button type="submit" style="color:#7b2d6b">Amthyst</button>
@@ -59,7 +60,7 @@ cast [L18]</textarea>
 		</form>
 		<form action="" method="post">
 			<p>
-				<input type="hidden" name="player" value="<%= player2.email %>" />
+				<input type="hidden" name="player" value="<%= player2.email %>">
 				<textarea name="command" rows="8" cols="40">move [N]
 cast [B7]</textarea>
 				<button type="submit">Dr. Black</button>
@@ -68,238 +69,275 @@ cast [B7]</textarea>
 	</div>
 	<% } %>
 
-<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" bgcolor="#000">
+<table <%- tablereset %> align="center" width="100%" bgcolor="#000">
 	<tr>
 		<td>
-			<table class="margin" cellpadding="0" cellspacing="0" border="0" >
+			<table <%- tablereset %> align="center">
 				<tr>
-					<td height="20">
-					</td>
-				</tr>
-			</table>
+					<td width="600">
+						<table class="margin" <%- tablereset %>>
+							<tr>
+								<td width="600" height="20">
+									<img src="http://localhost:3001/transparent.gif" width="600" height="1" alt="">
+								</td>
+							</tr>
+						</table>
 
-			<table cellpadding="0" cellspacing="0" border="0" align="center">
-				<tr>
-					<td height="164">
-						<img src="http://localhost:3001/logo.gif">
-					</td>
-				</tr>
-			</table>
+						<table <%- tablereset %>>
+							<tr>
+								<td width="600" height="164" align="center">
+									<img src="http://localhost:3001/logo.gif" width="290" height="157" alt="Cursendus">
+								</td>
+							</tr>
+						</table>
 
-			<table class="margin" cellpadding="0" cellspacing="0" border="0" >
-				<tr>
-					<td height="30">
-					</td>
-				</tr>
-			</table>
+						<table class="margin" <%- tablereset %>>
+							<tr>
+								<td width="600" height="30"></td>
+							</tr>
+						</table>
+						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
+							<tr>
+								<td width="290" align="left" valign="top">
+									<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody Amthyst, a purple sorcerer and you are about to defy Dr. Black.
+								</td>
+								<td width="9"></td>
+								<td width="1" bgcolor="#222" style="background-color:#222;"></td>
+								<td width="10"></td>
+								<td width="290" align="left" valign="top">
+									<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.<br>
+									If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
+								</td>
+							</tr>
+						</table>
+						<table class="margin" <%- tablereset %>>
+							<tr>
+								<td width="600" height="30"></td>
+							</tr>
+						</table>
 
-			<table cellpadding="0" cellspacing="0" border="0" align="center" style="<%= fontinfo %>">
-				<tr>
-					<td width="290" align="left" vertical-align="top" style="vertical-align:top; padding-right:10px; border-right:1px solid #222;">
-						<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody Amthyst, a purple sorcerer and you are about to defy Dr. Black.
-					</td>
-					<td width="290" align="left" style="vertical-align:top;padding-left:10px;">
-						<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.
-						If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
-					</td>
-				</tr>
-			</table>
-
-			<table class="margin" cellpadding="0" cellspacing="0" border="0" >
-				<tr>
-					<td height="30">
-					</td>
-				</tr>
-			</table>
-
-			<table cellpadding="0" cellspacing="0" border="0" align="center">
-				<tr>
-					<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
-						<td width="20"></td>
-					<% for (var i=0; i < terrain[0].length; i++) { %>
-						<td width="41" height="20" background="http://localhost:3001/tabletab-north.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
-					<% } %>
-				</tr>
-				<% for (var i=0; i < terrain.length; i++) { %>
-				<tr>
-					<td width="26" height="30" background="http://localhost:3001/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
-					<% for (var j=0; j < terrain[i].length; j++) { %>
-						<% if (!terrain[i][j].occupied) { %>
-						<td<% if (terrain[i+1] && terrain[i+1][j].occupied) { %> rowspan="2" height="60"<% } else { %> height="30"<% } %> width="40"
-							background="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
-							<% if (terrain[i+1] && terrain[i+1][j].occupied) { %>
-							<img src="http://localhost:3001/sorcerer-<%= terrain[i+1][j].occupied.skin %>.gif" width="40" height="60" alt="" style="display:block" />
+						<table <%- tablereset %> align="center">
+							<tr>
+								<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
+								<td width="26"></td>
+								<% for (var i=0; i < terrain[0].length; i++) { %>
+								<td width="40" height="20" background="http://localhost:3001/tabletab-north.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
+								<% } %>
+								<td width="26"></td>
+							</tr>
+							<% for (var i=0; i < terrain.length; i++) { %>
+							<tr>
+								<td width="26" height="30" background="http://localhost:3001/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
+								<% for (var j=0; j < terrain[i].length; j++) { %>
+									<% if (!terrain[i][j].occupied) { %>
+									<td width="40" <% if (terrain[i+1] && terrain[i+1][j].occupied) { %>rowspan="2" height="60"<% } else { %>height="30"<% } %>
+										background="http://localhost:3001/terrain-<%= terrain[i][j].skin %>.gif">
+										<% if (terrain[i+1] && terrain[i+1][j].occupied) { %>
+										<img src="http://localhost:3001/sorcerer-<%= terrain[i+1][j].occupied.skin %>.gif" width="40" height="60" alt="" style="display:block">
+										<% } %>
+									</td>
+									<% } %>
+								<% } %>
+								<td width="26" height="30" background="http://localhost:3001/tabletab-est.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
+							</tr>
 							<% } %>
-						</td>
-						<% } %>
-					<% } %>
-					<td width="26" height="30" background="http://localhost:3001/tabletab-est.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
-				</tr>
-				<% } %>
-				<tr>
-					<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
-						<td width="20"></td>
-					<% for (var i=0; i < terrain[0].length; i++) { %>
-						<td width="41" height="20" background="http://localhost:3001/tabletab-south.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
-					<% } %>
-				</tr>
-			</table>
-
-			<table class="margin" cellpadding="0" cellspacing="0" border="0" >
-				<tr>
-					<td height="30">
-					</td>
-				</tr>
-			</table>
-
-			<table class="gameInfos" cellpadding="0" cellspacing="0" border="0" align="center" style="<%= fontsans %>">
-				<tr>
-					<td width="190" height="40" style="text-align:center; <%= h2 %>">
-						Turn <%= turn %>
-					</td>
-				</tr>
-				<tr>
-					<td width="600" height="20" colspan="6"></td>
-				</tr>
-			</table>
-
-
-			<table class="playersInfo" style="<%= fontsans %>" align="center">
-				<tr>
-					<td width="600" height="10" colspan="5"></td>
-				</tr>
-				<tr>
-					<td width="10"></td>
-					<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
-						<table>
 							<tr>
-								<td width="320" height="70" valign="bottom"><img src="http://localhost:3001/hat-1-large.gif"></td>
+								<% var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split(''); %>
+								<td width="26"></td>
+								<% for (var i=0; i < terrain[0].length; i++) { %>
+								<td width="40" height="20" background="http://localhost:3001/tabletab-south.gif" style="<%= fontserif %>text-align:center;"><b><%= letters[i] %></b></td>
+								<% } %>
+								<td width="26"></td>
 							</tr>
+						</table>
+						<table class="margin" <%- tablereset %>>
 							<tr>
-								<td width="320" height="30"><span style="color:#C77AD3;">Amthyst</span> (you)
+								<td width="600" height="30"></td>
+							</tr>
+						</table>
+						<table class="gameInfos" <%- tablereset %> align="center" style="<%= fontsans %>">
+							<tr>
+								<td width="190" height="40" style="text-align:center; <%= h2 %>">
+									Turn <%= turn %>
 								</td>
 							</tr>
 							<tr>
-								<td width="310">Health: <%= player1.health %>
+								<td width="596" height="1" bgcolor="#222" style="background-color:#222;"></td>
+							</tr>
+							<tr>
+								<td width="600" height="20"></td>
+							</tr>
+						</table>
+
+						<table class="playersInfo" <%- tablereset %> style="<%= fontsans %>" align="center">
+							<tr>
+								<td width="600" height="10" colspan="3"></td>
+							</tr>
+							<tr>
+								<td width="320" bgcolor="#333" style="background-color: #333;text-align:center; border-style:double; border-width:5px; border-color:#000;">
+									<table <%- tablereset %>>
+										<tr>
+											<td width="320" height="70" valign="bottom">
+												<img src="http://localhost:3001/hat-1-large.gif" width="53" height="47" alt="Amthyst’s hat">
+											</td>
+										</tr>
+										<tr>
+											<td width="320" height="30">
+												<span style="color:#C77AD3;">Amthyst</span> (you)
+											</td>
+										</tr>
+										<tr>
+											<td width="310">
+												Health: <%= player1.health %>
+											</td>
+										</tr>
+										<tr>
+											<td width="320">
+												Position: <%= player1.position %>
+											</td>
+										</tr>
+										<tr>
+											<td width="320" height="10"></td>
+										</tr>
+									</table>
+								</td>
+								<td width="20"></td>
+								<td width="260" bgcolor="#282828" align="center" style="background-color: #282828; border-style:double; border-width:5px; border-color:#000;">
+									<table <%- tablereset %>>
+										<tr>
+											<td width="260" height="70" valign="bottom" align="center">
+												<img src="http://localhost:3001/hat-2-large.gif" width="53" height="23" alt="Dr. Black’s hat">
+											</td>
+										</tr>
+										<tr>
+											<td width="260" height="30" align="center">
+												<span style="color:#FFF;">Dr. Black</span>
+											</td>
+										</tr>
+										<tr>
+											<td width="260" align="center">
+												Health: <%= player2.health %>
+											</td>
+										</tr>
+										<tr>
+											<td width="260" align="center">
+												Position: <%= player2.position %>
+											</td>
+										</tr>
+										<tr>
+											<td width="260" height="10"></td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 							<tr>
-								<td width="320">Position: <%= player1.position %>
+								<td width="600" height="40" colspan="3"></td>
+							</tr>
+						</table>
+
+						<% /* %>
+						<table class="title" <%- tablereset %> align="center" style="<%= fontsans %>">
+							<tr>
+								<td width="190" height="40" style="text-align:center; <%= h2 %>">
+									History
 								</td>
+							</tr>
+							<tr>
+								<td width="600"></td>
+							</tr>
+						</table>
+
+						<table class="lastRounds" style="<%= fontsans %>" align="center">
+							<tr>
+								<td width="600" height="10"></td>
+							</tr>
+							<tr>
+								<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
+									Foo
+								</td>
+							</tr>
+							<tr>
+								<td width="600" height="40" colspan="5"></td>
+							</tr>
+						</table>
+						<% */ %>
+
+						<table class="title" <%- tablereset %> align="center">
+							<tr>
+								<td width="596" height="40" align="center" style="<%= h2 %>">
+									Rules
+								</td>
+							</tr>
+							<tr>
+								<td width="596" height="1" bgcolor="#222222" style="background-color:#222222;"></td>
+							</tr>
+						</table>
+
+						<table <%- tablereset %> style="<%= fontsans %>" align="center">
+							<tr>
+								<td width="600" height="10"></td>
+							</tr>
+							<tr>
+								<td align="left" bgcolor="#333" style="background-color:#333;">
+									<table <%- tablereset %> style="border-style:double; border-width:5px; border-color:#000;">
+										<tr>
+											<td width="600" height="10" colspan="3" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+										<tr>
+											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
+											<td>
+												<p align="center">
+													<span style="font-size:15px; font-family:monospace;">&#x2318;</span><br>
+													Cusrendus is a sorcerer battle game based on email.
+												</p>
+
+												<h4 style="<%= h4 %>">Open a battle</h4>
+												<p>To begin a game, send an email to your friend and add <a style="<%= link %>" href="mailto:play@cursend.us">play@cursend.us</a> to the recipient.</p>
+												<p>You will receive an email with the game and the rules. You will also discover the name of your character. Characters are randomly distributed.</p>
+
+												<h4 style="<%= h4 %>">Play</h4>
+												<p>You are able to move and attack. To do so, answer to the initial email. Actions must be written at the very top of the email. Example:</p>
+												<p style="<%=code %>">
+													move south <br>
+													attack F16
+												</p>
+												<p>As a result of the previous lines, you character will move one square to the south and throw a cast to the square x=F y=16.</p>
+
+												<h4 style="<%= h4 %>">Goal</h4>
+												<p>Try to attack your enemy by sending casts to cases. Each attack can take from 8 to 10 life points.</p>
+
+												<h4 style="<%= h4 %>">Important</h4>
+												<p>
+													- Both players need to play before receiving the next round.<br>
+													- An empty email is not valid.<br>
+													- The rules are always available at the bottom of each email.
+												</p>
+
+												<h4 style="<%= h4 %>">Credits</h4>
+												<p>
+													Website : <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br>
+													Realisation : <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a><br>
+													Cursendus is <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a>
+												</p>
+											</td>
+											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+										<tr>
+											<td width="600" height="10" colspan="3" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td width="600" height="10"></td>
+							</tr>
+						</table>
+						<table class="margin" <%- tablereset %>>
+							<tr>
+								<td width="600" height="30"></td>
 							</tr>
 						</table>
 					</td>
-					<td width="10"></td>
-					<td bgcolor="#282828" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
-						<table>
-							<tr>
-								<td width="240" height="70" valign="bottom"><img src="http://localhost:3001/hat-2-large.gif"></td>
-							</tr>
-							<tr>
-								<td width="240" height="30"><span style="color:#FFF;">Dr. Black</span>
-								</td>
-							</tr>
-							<tr>
-								<td width="250">Health: <%= player2.health %>
-								</td>
-							</tr>
-							<tr>
-								<td width="240">Position: <%= player2.position %>
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td width="10"></td>
-				</tr>
-				<tr>
-					<td width="600" height="40" colspan="5"></td>
-				</tr>
-			</table>
-
-			<table class="title" cellpadding="0" cellspacing="0" border="0" align="center" style="<%= fontsans %>">
-				<tr>
-					<td width="190" height="40" style="text-align:center; <%= h2 %>">
-						History
-					</td>
-				</tr>
-				<tr>
-					<td width="600" height="0" colspan="6"></td>
-				</tr>
-			</table>
-
-
-			<table class="lastRounds" style="<%= fontsans %>" align="center">
-				<tr>
-					<td width="600" height="10"></td>
-				</tr>
-				<tr>
-					<td bgcolor="#333" style="text-align:center; border-style:double; border-width:5px; border-color:#000;">
-						Foo
-					</td>
-				</tr>
-				<tr>
-					<td width="600" height="40" colspan="5"></td>
-				</tr>
-			</table>
-
-			<table class="title" cellpadding="0" cellspacing="0" border="0" align="center" style="<%= fontsans %>">
-				<tr>
-					<td width="190" height="40" style="text-align:center; <%= h2 %>">
-						Rules
-					</td>
-				</tr>
-				<tr>
-					<td width="600" height="0" colspan="6"></td>
-				</tr>
-			</table>
-
-
-			<table class="lastRounds" style="<%= fontsans %>" align="center">
-				<tr>
-					<td width="600" height="10"></td>
-				</tr>
-				<tr>
-					<td bgcolor="#333" style="text-align:left; border-style:double; border-width:5px; border-color:#000; padding:10px;">
-						<p align="center"><span style="font-size:15px; font-family:monospace;"> ⌘ </span><br>Cusrendus is a sorcerer battle game based on email.<br>
-						</p>
-						<h4 style="<%= h4 %>">Open a battle</h4>
-							<p>To begin a game, send an email to your friend and add <a style="<%= link %>" href="mailto:play@cursend.us">play@cursend.us</a> to the recipient.</p>
-							<p>You will receive an email with the game and the rules. You will also discover the name of your character. Characters are randomly distributed.</p>
-
-							<h4 style="<%= h4 %>">Play</h4>
-
-							<p>You are able to move and attack. To do so, answer to the initial email. Actions must be written at the very top of the email. Example:</p>
-							<p style="<%=code %>">
-								move south <br>
-								attack F16
-							</p>
-
-							<p>As a result of the previous lines, you character will move one square to the south and throw a cast to the square x=F y=16.</p>
-							
-							<h4 style="<%= h4 %>">Goal</h4>
-							<p>Try to attack your enemy by sending casts to cases. Each attack can take from 8 to 10 life points.</p>
-							
-							<h4 style="<%= h4 %>">Important</h4>
-							<p>- Both players need to play before receiving the next turn.<br>
-							- An empty email is not valid.<br>
-							- The rules are always available at the bottom of each email.</p>
-
-							<h4 style="<%= h4 %>">Credits</h4>
-							
-							<p>Website : <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br/>
-							Realisation : <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a><br/>
-							Cursendus is <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a></p>
-					</td>
-				</tr>
-				<tr>
-					<td width="600" height="10" colspan="5"></td>
-				</tr>
-			</table>
-
-
-			<table class="margin" cellpadding="0" cellspacing="0" border="0">
-				<tr>
-					<td width="600" height="30"></td>
 				</tr>
 			</table>
 		</td>
