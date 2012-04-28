@@ -8,7 +8,11 @@ Sorcerer battle game through email.
 
 # Installation
 
-See [INSTALL.md](https://github.com/bpierre/cursendus/blob/master/doc/INSTALL.md).
+See [install.md](https://github.com/bpierre/cursendus/blob/master/doc/system/install.md) in the `doc` directory.
+
+# User manual
+
+See [doc/manual](https://github.com/bpierre/cursendus/blob/master/doc/manual/commands.md).
 
 # License
 
