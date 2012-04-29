@@ -13,7 +13,7 @@ function assetsServer() {
       server = connect();
   server.use(connect.static('public'));
   server.listen(3001);
-  conf.assetsUrl = 'http://localhost:3001/';
+  conf.assetsUrl = 'http://localhost:3001';
 }
 
 function main() {
