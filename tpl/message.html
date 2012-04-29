@@ -1,86 +1,13 @@
-<%
-	var fontserif = 'font-family:serif;font-size:10px;color:#999;font-weight:normal;',
-	fontsans = 'font-family:verdana, sans-serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
-	h2 = 'font-family:Times New Roman, serif;font-size:20px;font-weight:normal;letter-spacing:1px;color:#999999;',
-	h4 = 'font-family:Times New Roman, serif;font-size:16px;font-weight:normal;letter-spacing:1px;color:#C2C2C2;',
-	fontinfo = 'font-family:Times New Roman, serif;font-size:12px;color:#999999;font-weight:normal;letter-spacing:1px;',
-	indent = '&nbsp;&nbsp;&nbsp;',
-	link = 'color:#ccc; text-decoration:none;',
-	code = 'font-family:courrier new, monospace; font-size:15px; padding:10px; background:#424242;',
-	tablereset = 'cellpadding="0" cellspacing="0" border="0"';
-%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	"http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cursendus</title>
-	<% if (mode === 'http') { %>
-	<style>
-		/* HTTP specific styles */
-		#debug {
-			overflow: hidden;
-			margin:0 auto 20px auto;
-			width:600px;
-		}
-		form {
-			float: left;
-			width: 250px;
-		}
-		form + form {
-			float: right;
-		}
-		textarea {
-			width: 248px;
-			height: 40px;
-			resize: none;
-		}
-		button[type=submit] {
-			display: block;
-			width: 150px;
-			margin: 0 auto;
-			font-size: 18px;
-			line-height: 30px;
-			cursor: pointer;
-		}
-	</style>
-	<% } %>
-</head>
-<body style="margin:0 auto;">
-<table <%- tablereset %> align="center" width="100%" bgcolor="#000">
-	<tr>
-		<td>
-			<table <%- tablereset %> align="center">
-				<tr>
-					<td width="600">
-						<% /* %>
 						<table class="margin" <%- tablereset %>>
 							<tr>
-								<td width="600" height="20">
-									<img src="<%- assetsUrl %>/transparent.gif" width="600" height="1" alt="">
-								</td>
-							</tr>
-						</table>
-						<table <%- tablereset %>>
-							<tr>
-								<td width="600" height="164" align="center">
-									<img src="<%- assetsUrl %>/logo.gif" width="290" height="157" alt="Cursendus">
-								</td>
-							</tr>
-						</table>
-						<% */ %>
-
-						<table class="margin" <%- tablereset %>>
-							<tr>
-								<td width="600" height="30"></td>
+								<td width="600" height="10"></td>
 							</tr>
 						</table>
 
 						<table class="title" <%- tablereset %> align="center">
 							<tr>
 								<td width="596" height="40" align="center" style="<%= h2 %>">
-									A message from Cursendus
+									<%- messageSubject %>
 								</td>
 							</tr>
 							<tr>
@@ -93,17 +20,8 @@
 								<td width="600" height="10" colspan="3"></td>
 							</tr>
 							<tr>
-								<td width="260" bgcolor="#333" style="background-color: #333;text-align:center; border-style:double; border-width:5px; border-color:#000;">
-									<table <%- tablereset %>>
-										<tr>
-											<td width="260" height="70" valign="bottom" align="center">
-												<img src="<%- assetsUrl %>/message.gif" width="157" height="113" alt="Amthyst’s hat">
-											</td>
-										</tr>
-										<tr>
-											<td width="320" height="10"></td>
-										</tr>
-									</table>
+								<td width="260" bgcolor="#333" style="background-color: #333;text-align:center; border-style:double; border-width:5px; border-color:#000;" valign="center">
+									<img src="<%- assetsUrl %>/message.gif" width="157" height="113" alt="">
 								</td>
 								<td width="20"></td>
 								<td width="310" bgcolor="#333" align="center" style="background-color: #333; border-style:double; border-width:5px; border-color:#000;">
@@ -114,10 +32,11 @@
 											</td>
 										</tr>
 										<tr>
+											<td width="310" height="10"></td>
+										</tr>
+										<tr>
 											<td width="310" align="center">
-												Something went wrong, your command seams empty or invalid. Try to play again.
-												<br>
-												All you need to know is in the <a href="http://cursend.us/#rules">rules</a>.
+												<%- messageBody %>
 											</td>
 										</tr>
 										<tr>
@@ -130,19 +49,3 @@
 								<td width="600" height="40" colspan="3"></td>
 							</tr>
 						</table>
-
-
-
-						<table class="margin" <%- tablereset %>>
-							<tr>
-								<td width="600" height="30"></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-</body>
-</html>

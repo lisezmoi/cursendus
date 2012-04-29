@@ -1,0 +1,11 @@
+{
+  "fontserif": "font-family:serif;font-size:10px;font-weight:normal;color:#999999;",
+  "fontsans": "font-family:verdana,sans-serif;font-size:12px;letter-spacing:1px;font-weight:normal;color:#999999;",
+  "h2": "font-family:Times New Roman,serif;font-size:20px;font-weight:normal;letter-spacing:1px;color:#999999;",
+  "h4": "font-family:Times New Roman,serif;font-size:16px;font-weight:normal;letter-spacing:1px;color:#C2C2C2;",
+  "fontinfo": "font-family:Times New Roman, serif;font-size:12px;font-weight:normal;letter-spacing:1px;color:#999999;",
+  "indent": "&nbsp;&nbsp;&nbsp;",
+  "link": "color:#ccc;text-decoration:none;",
+  "code": "font-family:courrier new, monospace;font-size:15px;padding:10px;background:#424242;",
+  "tablereset": "cellpadding=\"0\" cellspacing=\"0\" border=\"0\""
+}

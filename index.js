@@ -1,7 +1,9 @@
 var Game = require('./lib/game'),
     GamesManager = require('./lib/games-manager'),
+    template = require('./lib/template'),
     mailView = require('./lib/views/mail'),
     httpView = require('./lib/views/http'),
+    errorMessages = require('./msg/errors'),
     redis = require('redis'),
     rclient,
     rpubsub,
@@ -50,8 +52,15 @@ function main() {
     skyHeight: conf.skyHeight,
     moonRow: conf.moonRow
   });
-  mailView.start(games, rpubsub, conf);
-  httpView.start(games, conf);
+
+  // Template system
+  template.init({
+    root: __dirname + '/tpl'
+  });
+
+  // Views
+  mailView.start(games, template, rpubsub, errorMessages, conf);
+  httpView.start(games, template, rpubsub, errorMessages, conf);
 }
 
 if (require.main === module) {
