@@ -20,6 +20,9 @@
   "devDependencies": {
     "mocha": "1.0"
   },
+  "scripts": {
+    "test": "make test"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
