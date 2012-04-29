@@ -6,7 +6,7 @@
 	<meta name="description" content="Cursendus Sorcerer battle game through email." />
 	<meta name="viewport" content="width=device-width" />
 	<link rel="shortcut icon" href="img/favicon.png" />
-	<link rel="stylesheet" href="main.css" />
+	<link rel="stylesheet" href="css/cursendus.min.css" />
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Della+Respira|Almendra:400,400italic,700" />
 </head>
 <body>
@@ -29,7 +29,7 @@
 			<h1>Screenshot</h1>
 			<div class="boxcontent">
 				<p>Click the image for details.</p>
-				<a href="img/screenshot-1.gif"><img title="Initial Cursendus email" src="img/screenshot-thumb-1.gif"></a>
+				<a href="img/screenshot-1.gif"><img src="img/screenshot-1-thumb.gif" width="300" height="533" alt="Screenshot of the game"></a>
 			</div>
 		</section>
 		<section id="rules">
@@ -63,8 +63,7 @@ attack F16</pre>
 
 				<h2>Credits</h2>
 				<p>
-					Website: <a  href="http://cursend.us">http://cursend.us</a><br />
-					Realisation: <a href="http://pierrebertet.net">Pierre Bertet</a>, <a  href="http://raphaelbastide.com">Raphaël Bastide</a><br />
+					Realisation: <a href="http://pierrebertet.net">Pierre Bertet</a>, <a href="http://raphaelbastide.com">Raphaël Bastide</a><br />
 					Cursendus is <a href="https://github.com/bpierre/cursendus">open source</a>
 				</p>
 			</div>
@@ -72,12 +71,10 @@ attack F16</pre>
 	</div>
 	<canvas id="canvas-left" width="300" height="500"></canvas>
 	<canvas id="canvas-right" width="300" height="500"></canvas>
-	<script src="underscore-min.js"></script>
-	<script src="particle.js"></script>
-	<script src="main.js"></script>
+	<script src="js/cursendus.min.js"></script>
 	<script>
-		mkParticles(document.getElementById('canvas-left'), 100);
-		mkParticles(document.getElementById('canvas-right'), 100, {
+		mkParticles(document.getElementById('canvas-left'), 30);
+		mkParticles(document.getElementById('canvas-right'), 30, {
 			    position: Vector.create(150, 340),
 				positionRandom: Vector.create(5, 20),
 				size: 25,

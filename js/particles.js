@@ -1,10 +1,11 @@
-/* 
+(function(window){
+/*
 	Parcycle: by Mr Speaker - www.mrspeaker.net
 	v: 1.0
 	license: MIT
-	
+
 	Particle Emitter classes based on the code from 71squared.com iPhone tutorials
-	
+
 	includes:
 		cParticle : class for individual particles
 		cParticleSystem : the controller for the particles
@@ -40,18 +41,18 @@ function cParticleSystem(){
 
 
 
-	
+
 	this.init = function(){
 		this.emissionRate = this.maxParticles / this.lifeSpan;
 		this.emitCounter = 0;
 	};
-	
+
 	this.addParticle = function(){
 		if(this.particleCount == this.maxParticles) {
 			return false;
 		}
-		
-		// Take the next particle out of the particle pool we have created and initialize it	
+
+		// Take the next particle out of the particle pool we have created and initialize it
 		var particle = new cParticle();
 		this.initParticle( particle );
 		this.particles[ this.particleCount ] = particle;
@@ -60,10 +61,10 @@ function cParticleSystem(){
 
 		return true;
 	};
-	
+
 	this.initParticle = function( particle ){
 		var RANDM1TO1 = function(){ return Math.random() * 2 - 1; };
-		
+
 
 		var newAngle = (this.angle + this.angleRandom * RANDM1TO1() ) * ( Math.PI / 180 ); // convert to radians
 		var vector = Vector.create( Math.cos( newAngle ), Math.sin( newAngle ) ); // Could move to lookup for speed
@@ -73,7 +74,7 @@ function cParticleSystem(){
 		particle.size = this.size + this.sizeRandom * RANDM1TO1();
 		particle.size = particle.size < 0 ? 0 : ~~particle.size;
 		particle.timeToLive = this.lifeSpan + this.lifeSpanRandom * RANDM1TO1();
-		
+
 		particle.position.x = this.position.x - (particle.size/2) + this.positionRandom.x * RANDM1TO1();
 		particle.position.y = this.position.y + this.positionRandom.y * RANDM1TO1();
 
@@ -102,7 +103,7 @@ function cParticleSystem(){
 		particle.deltaColour[ 2 ] = ( end[ 2 ] - start[ 2 ] ) / particle.timeToLive;
 		particle.deltaColour[ 3 ] = ( end[ 3 ] - start[ 3 ] ) / particle.timeToLive;
 	};
-	
+
 	this.update = function( delta ){
 		if( this.active && this.emissionRate > 0 ){
 			var rate = 1 / this.emissionRate;
@@ -135,7 +136,7 @@ function cParticleSystem(){
 				var g = currentParticle.colour[ 1 ] += ( currentParticle.deltaColour[ 1 ] * delta );
 				var b = currentParticle.colour[ 2 ] += ( currentParticle.deltaColour[ 2 ] * delta );
 				var a = currentParticle.colour[ 3 ] += ( currentParticle.deltaColour[ 3 ] * delta );
-				
+
 				// Calculate the rgba string to draw.
 				var draw = [];
 				draw.push("rgba(" + ( r > 255 ? 255 : r < 0 ? 0 : ~~r ) );
@@ -143,10 +144,10 @@ function cParticleSystem(){
 				draw.push( b > 255 ? 255 : b < 0 ? 0 : ~~b );
 				draw.push( (a > 1 ? 1 : a < 0 ? 0 : a.toFixed( 2 ) ) + ")");
 				currentParticle.drawColour = draw.join( "," );
-				
+
 				this.particleIndex++;
 			} else {
-				// Replace particle with the last active 
+				// Replace particle with the last active
 				if( this.particleIndex != this.particleCount - 1 ){
 					this.particles[ this.particleIndex ] = this.particles[ this.particleCount-1 ];
 				}
@@ -154,13 +155,13 @@ function cParticleSystem(){
 			}
 		}
 	};
-	
+
 	this.stop = function(){
 		this.active = false;
 		this.elapsedTime = 0;
 		this.emitCounter = 0;
 	};
-	
+
 	this.render = function( context ){
 		for( var i = 0, j = this.particleCount; i < j; i++ ){
 			var particle = this.particles[ i ];
@@ -168,14 +169,14 @@ function cParticleSystem(){
 			var halfSize = size >> 1;
 			var x = ~~particle.position.x;
 			var y = ~~particle.position.y;
-					
-			var radgrad = context.createRadialGradient( x + halfSize, y + halfSize, particle.sizeSmall, x + halfSize, y + halfSize, halfSize);  
-			radgrad.addColorStop( 0, particle.drawColour );   
+
+			var radgrad = context.createRadialGradient( x + halfSize, y + halfSize, particle.sizeSmall, x + halfSize, y + halfSize, halfSize);
+			radgrad.addColorStop( 0, particle.drawColour );
 			radgrad.addColorStop( 1, 'rgba(0,0,0,0)' ); //Super cool if you change these values (and add more colour stops)
 			context.fillStyle = radgrad;
 		  	context.fillRect( x, y, size, size );
 		}
-	};	
+	};
 }
 
 /* Vector Helper */
@@ -187,13 +188,19 @@ var Vector = {
 		};
 	},
 	multiply : function( vector, scaleFactor ){
-		vector.x *= scaleFactor; 
+		vector.x *= scaleFactor;
 		vector.y *= scaleFactor;
 		return vector;
 	},
-	add : function( vector1, vector2 ){ 
-		vector1.x += vector2.x; 
+	add : function( vector1, vector2 ){
+		vector1.x += vector2.x;
 		vector1.y += vector2.y;
 		return vector1;
 	}
 };
+
+/* Public objects */
+window.cParticleSystem = cParticleSystem;
+window.Vector = Vector;
+
+})(this);
