@@ -3,7 +3,8 @@ var Game = require('./lib/game'),
     mailView = require('./lib/views/mail'),
     httpView = require('./lib/views/http'),
     redis = require('redis'),
-    rclient = redis.createClient(),
+    rclient,
+    rpubsub,
     games,
     conf = require('./config'),
     init = false;
@@ -19,6 +20,17 @@ function assetsServer() {
 function main() {
   if (init) { return; }
   init = true;
+
+  // Redis connection
+  function redisError(err) {
+    console.log('Redis connection error. Is Redis started?');
+    console.log(err);
+    process.exit(0);
+  }
+  rclient = redis.createClient();
+  rpubsub = redis.createClient();
+  rclient.on('error', redisError);
+  rpubsub.on('error', redisError);
 
   // Static files
   if (!conf.assetsUrl) {
@@ -38,7 +50,7 @@ function main() {
     skyHeight: conf.skyHeight,
     moonRow: conf.moonRow
   });
-  mailView.start(games, conf);
+  mailView.start(games, rpubsub, conf);
   httpView.start(games, conf);
 }
 

@@ -169,6 +169,21 @@ cast [B7]</textarea>
 							</tr>
 						</table>
 
+
+						<%
+						var characters = {
+							1: {
+								name: 'Amthyst',
+								hat: ['hat-1-large.gif', 53, 47],
+								color: '#C77AD3'
+							},
+							2: {
+								name: 'Dr. Black',
+								hat: ['hat-2-large.gif', 53, 23],
+								color: '#FFFFFF'
+							}
+						};
+						%>
 						<table class="playersInfo" <%- tablereset %> style="<%= fontsans %>" align="center">
 							<tr>
 								<td width="600" height="10" colspan="3"></td>
@@ -178,22 +193,22 @@ cast [B7]</textarea>
 									<table <%- tablereset %>>
 										<tr>
 											<td width="320" height="70" valign="bottom">
-												<img src="<%- assetsUrl %>/hat-1-large.gif" width="53" height="47" alt="Amthyst’s hat">
+												<img src="<%- assetsUrl %>/<%- characters[player.skin].hat[0] %>" width="<%- characters[player.skin].hat[1] %>" height="<%- characters[player.skin].hat[2] %>" alt="<%- characters[player.skin].name %>’s hat">
 											</td>
 										</tr>
 										<tr>
 											<td width="320" height="30">
-												<span style="color:#C77AD3;">Amthyst</span> (you)
+												<span style="color:<%- characters[player.skin].color %>;"><%- characters[player.skin].name %></span> (you)
 											</td>
 										</tr>
 										<tr>
 											<td width="310">
-												Health: <%= player1.health %>
+												Health: <%= player.health %>
 											</td>
 										</tr>
 										<tr>
 											<td width="320">
-												Position: <%= player1.position %>
+												Position: <%= player.position %>
 											</td>
 										</tr>
 										<tr>
@@ -206,22 +221,22 @@ cast [B7]</textarea>
 									<table <%- tablereset %>>
 										<tr>
 											<td width="260" height="70" valign="bottom" align="center">
-												<img src="<%- assetsUrl %>/hat-2-large.gif" width="53" height="23" alt="Dr. Black’s hat">
+												<img src="<%- assetsUrl %>/<%- characters[otherPlayer.skin].hat[0] %>" width="<%- characters[otherPlayer.skin].hat[1] %>" height="<%- characters[otherPlayer.skin].hat[2] %>" alt="<%- characters[otherPlayer.skin].name %>’s hat">
 											</td>
 										</tr>
 										<tr>
 											<td width="260" height="30" align="center">
-												<span style="color:#FFF;">Dr. Black</span>
+												<span style="color:#<%- characters[otherPlayer.skin].color %>;"><%- characters[otherPlayer.skin].name %></span>
 											</td>
 										</tr>
 										<tr>
 											<td width="260" align="center">
-												Health: <%= player2.health %>
+												Health: <%= otherPlayer.health %>
 											</td>
 										</tr>
 										<tr>
 											<td width="260" align="center">
-												Position: <%= player2.position %>
+												Position: <%= otherPlayer.position %>
 											</td>
 										</tr>
 										<tr>
