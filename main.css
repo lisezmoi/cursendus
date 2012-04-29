@@ -168,17 +168,17 @@ body.p404{
 
 @media only screen and (max-width: 800px) {
 	header img{
-	width:202px;
-	height:113px;
-	margin:20px 0;
+		width:202px;
+		height:113px;
+		margin:20px 0;
 	}
 	#main .box{
 		display:block;
 		width:100%;
 		margin:0 0 30px 0;
 	}
-	#rules{
-	width:100%;
+	.boxcontent, #rules, #screenshot{
+		width:100%;
 	}
 	canvas{
 		display:none;
