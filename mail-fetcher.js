@@ -31,6 +31,13 @@ xoauthProcess.stdout.on('data', function (data) {
   }
 });
 
+xoauthProcess.stderr.on('data', function (data) {
+  console.log('xoauth.py error: ' + data);
+});
+xoauthProcess.on('exit', function (code) {
+  console.log('xoauth.py exited with code ' + code);
+});
+
 function init(xoauthEncoded) {
   imap = new ImapConnection({
     host: 'imap.gmail.com',
