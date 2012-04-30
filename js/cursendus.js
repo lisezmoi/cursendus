@@ -1,4 +1,4 @@
-/*! Cursendus website - v0.1.0 - 2012-04-28 */
+/*! Cursendus website - v0.1.0 - 2012-05-01 */
 
 //     Underscore.js 1.3.3
 //     (c) 2009-2012 Jeremy Ashkenas, DocumentCloud Inc.
