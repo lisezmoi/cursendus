@@ -68,7 +68,7 @@ function gameServer(logger) {
   // Mail fetcher
   require('./mail-fetcher')(makeLogger('fetchmail'));
 
-  logger.info('Cursendus launched.');
+  logger.info('Cursendus game server launched.');
 }
 
 function main() {
