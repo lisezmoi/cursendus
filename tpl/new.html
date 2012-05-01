@@ -21,5 +21,11 @@
 		</p>
 		<p><input type="submit" value="New game &rarr;" /></p>
 	</form>
+	<h1>Active games</h1>
+	<ul>
+		<% for (var i = 0; i < games.length; i++) { %>
+		<li><a href="/game/<%= games[i] %>">Game #<%= games[i] %></a></li>
+		<% } %>
+	</ul>
 </body>
 </html>

@@ -42,7 +42,7 @@
 						</style>
 						<div id="debug">
 							<p>Send commands</p>
-							<form action="" method="post">
+							<form action="/game/<%= game.id %>" method="post">
 								<p>
 									<input type="hidden" name="player" value="<%= player1.email %>">
 									<textarea name="command" rows="8" cols="40">move [S]
@@ -50,7 +50,7 @@ cast [L18]</textarea>
 									<button type="submit" style="color:#7b2d6b">Amthyst</button>
 								</p>
 							</form>
-							<form action="" method="post">
+							<form action="/game/<%= game.id %>" method="post">
 								<p>
 									<input type="hidden" name="player" value="<%= player2.email %>">
 									<textarea name="command" rows="8" cols="40">move [N]
