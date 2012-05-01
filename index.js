@@ -1,4 +1,5 @@
 var Game = require('./lib/game'),
+    winston = require('winston'),
     GamesManager = require('./lib/games-manager'),
     template = require('./lib/template'),
     mailView = require('./lib/views/mail'),
@@ -8,8 +9,22 @@ var Game = require('./lib/game'),
     rclient,
     rpubsub,
     games,
+    logger,
     conf = require('./config'),
     init = false;
+
+function makeLogger(name) {
+  return new winston.Logger({
+    transports: [
+      new winston.transports.Console({ colorize: true }),
+      new winston.transports.File({
+        filename: __dirname + '/log/'+ name +'.log',
+        timestamp: true,
+        maxsize: (100 * 1024 * 1024)
+      })
+    ]
+  });
+}
 
 function assetsServer() {
   var connect = require('connect'),
@@ -23,10 +38,12 @@ function main() {
   if (init) { return; }
   init = true;
 
+  logger = makeLogger('cursendus');
+
   // Redis connection
   function redisError(err) {
-    console.log('Redis connection error. Is Redis started?');
-    console.log(err);
+    logger.error('Redis connection error. Is Redis started?');
+    logger.error(err);
     process.exit(0);
   }
   rclient = redis.createClient();
@@ -61,6 +78,12 @@ function main() {
   // Views
   mailView.start(games, template, rpubsub, errorMessages, conf);
   httpView.start(games, template, rpubsub, errorMessages, conf);
+
+  // Mail fetcher
+  require('./mail-fetcher')(makeLogger('fetchmail'));
+
+  logger.info('Cursendus launched.')
+  logger.info('Web server: http://localhost:3000/');
 }
 
 if (require.main === module) {

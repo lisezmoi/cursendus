@@ -15,30 +15,7 @@ var util = require('util'),
     pubsub = redis.createClient(),
     fetchInterval = 2000;
 
-xoauthProcess = spawn('python', ['./tools/xoauth.py',
-  '--generate_xoauth_string',
-  '--user=' + xoauthParams.user,
-  '--oauth_token=' + xoauthParams.oauth_token,
-  '--oauth_token_secret=' + xoauthParams.oauth_token_secret]);
-
-xoauthProcess.stdout.on('data', function (data) {
-  var lines = data.toString().split('\n');
-  for (var i=0; i < lines.length; i++) {
-    var matches = lines[i].match(/^XOAUTH string \(base64\-encoded\): (.+)/);
-    if (matches && matches[1]) {
-      init(matches[1]);
-    }
-  }
-});
-
-xoauthProcess.stderr.on('data', function (data) {
-  console.log('xoauth.py error: ' + data);
-});
-xoauthProcess.on('exit', function (code) {
-  console.log('xoauth.py exited with code ' + code);
-});
-
-function init(xoauthEncoded) {
+function imapWatch(xoauthEncoded, logger) {
   imap = new ImapConnection({
     host: 'imap.gmail.com',
     port: 993,
@@ -48,12 +25,13 @@ function init(xoauthEncoded) {
   });
 
   function die(err) {
-    console.log(err);
+    logger.error(err);
     process.exit(1);
   }
   function imapConnect() {
     imap.connect(function(err) {
       if (err) die(err);
+      logger.info('IMAP connected.');
       imap.openBox('INBOX', false, watchInbox);
     });
   }
@@ -62,7 +40,7 @@ function init(xoauthEncoded) {
     imap.search(['UNSEEN'], function(err, results) {
       var fetch;
       if (!results || !results.length) {
-        console.log('No unread messages');
+        // console.log('No unread messages');
         setTimeout(watchInbox, fetchInterval);
         return;
       }
@@ -80,7 +58,7 @@ function init(xoauthEncoded) {
         newMessage(msg);
       });
       fetch.on('end', function() {
-        console.log('end fetch');
+        logger.info('end fetch');
         setTimeout(watchInbox, fetchInterval);
       });
     });
@@ -89,7 +67,8 @@ function init(xoauthEncoded) {
   function newMessage(message) {
     var parser = new mailparser.MailParser();
     parser.on('end', function(mail) {
-      console.log(mail)
+      logger.info('New mail');
+      logger.info(mail);
       pubsub.publish('game:emails', JSON.stringify(mail));
     });
     message.on('data', function(data) {
@@ -101,4 +80,38 @@ function init(xoauthEncoded) {
   }
 
   imapConnect();
+}
+
+function main(logger) {
+  xoauthProcess = spawn('python', ['./tools/xoauth.py',
+    '--generate_xoauth_string',
+    '--user=' + xoauthParams.user,
+    '--oauth_token=' + xoauthParams.oauth_token,
+    '--oauth_token_secret=' + xoauthParams.oauth_token_secret]);
+
+  xoauthProcess.stdout.on('data', function (data) {
+    var lines = data.toString().split('\n');
+    for (var i=0; i < lines.length; i++) {
+      var matches = lines[i].match(/^XOAUTH string \(base64\-encoded\): (.+)/);
+      if (matches && matches[1]) {
+        imapWatch(matches[1], logger);
+      }
+    }
+  });
+
+  xoauthProcess.stderr.on('data', function (data) {
+    logger.error('xoauth.py error: ' + data);
+  });
+  xoauthProcess.on('exit', function (code) {
+    if (code != 0) {
+      logger.info('xoauth.py exited with code ' + code);
+    }
+  });
+}
+
+
+if (require.main === module) {
+  main(require('winston'));
+} else {
+  module.exports = main;
 }
