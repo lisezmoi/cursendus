@@ -1,5 +1,6 @@
-var Game = require('./lib/game'),
-    winston = require('winston'),
+var winston = require('winston'),
+    async = require('async'),
+    Game = require('./lib/game'),
     GamesManager = require('./lib/games-manager'),
     template = require('./lib/template'),
     mailView = require('./lib/views/mail'),
@@ -26,34 +27,19 @@ function makeLogger(name) {
   });
 }
 
-function assetsServer() {
+function assetsServer(logger) {
   var connect = require('connect'),
       server = connect();
   server.use(connect.static('public'));
   server.listen(3001);
   conf.assetsUrl = 'http://localhost:3001';
+  logger.info('Assets web server started at http://localhost:3001/');
 }
 
-function main() {
-  if (init) { return; }
-  init = true;
-
-  logger = makeLogger('cursendus');
-
-  // Redis connection
-  function redisError(err) {
-    logger.error('Redis connection error. Is Redis started?');
-    logger.error(err);
-    process.exit(0);
-  }
-  rclient = redis.createClient();
-  rpubsub = redis.createClient();
-  rclient.on('error', redisError);
-  rpubsub.on('error', redisError);
-
+function gameServer(logger) {
   // Static files
   if (!conf.assetsUrl) {
-    assetsServer();
+    assetsServer(logger);
   }
 
   // Games server
@@ -76,14 +62,44 @@ function main() {
   });
 
   // Views
-  mailView.start(games, template, rpubsub, errorMessages, conf);
-  httpView.start(games, template, rpubsub, errorMessages, conf);
+  mailView.start(games, template, rpubsub, errorMessages, logger, conf);
+  httpView.start(games, template, rpubsub, errorMessages, logger, conf);
 
   // Mail fetcher
   require('./mail-fetcher')(makeLogger('fetchmail'));
 
-  logger.info('Cursendus launched.')
-  logger.info('Web server: http://localhost:3000/');
+  logger.info('Cursendus launched.');
+}
+
+function main() {
+  if (init) { return; }
+  init = true;
+
+  logger = makeLogger('cursendus');
+
+  // Redis connections
+  async.parallel([
+    function(cb){
+      rclient = redis.createClient();
+      rclient.on('error', cb);
+      rclient.on('ready', cb);
+    },
+    function(cb){
+      rpubsub = redis.createClient();
+      rpubsub.on('error', cb);
+      rpubsub.on('ready', cb);
+    }
+  ], function(err) {
+    if (err) {
+      logger.error('Redis connection error. Is Redis started?');
+      logger.error(err);
+      return process.exit(0);
+    }
+    rpubsub.removeAllListeners();
+    rclient.removeAllListeners();
+    gameServer(logger);
+  });
+
 }
 
 if (require.main === module) {
