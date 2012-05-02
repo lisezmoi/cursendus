@@ -73,8 +73,7 @@ function imapWatch(xoauthEncoded, logger) {
   function newMessage(message) {
     var parser = new mailparser.MailParser();
     parser.on('end', function(mail) {
-      logger.info('New mail');
-      logger.info(mail);
+      logger.info('[mail-fetcher] New mail: ' + mail.subject);
       pubsub.publish('game:emails', JSON.stringify(mail));
     });
     message.on('data', function(data) {
