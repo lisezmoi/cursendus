@@ -44,7 +44,7 @@ function gameServer(logger) {
 
   // Games server
   Game.DEFAULT_SETTINGS.skinTiles = conf.skinTiles;
-  games = new GamesManager(rclient, Game, {
+  games = new GamesManager(rclient, {
     width: conf.terrainDimensions[0],
     height: conf.terrainDimensions[1],
     skinTiles: conf.skinTiles,
@@ -99,7 +99,6 @@ function main() {
     rclient.removeAllListeners();
     gameServer(logger);
   });
-
 }
 
 if (require.main === module) {
