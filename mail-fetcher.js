@@ -1,5 +1,6 @@
 var util = require('util'),
     conf = require('./config'),
+    nodemailer = require('nodemailer'),
     ImapConnection = require('imap').ImapConnection,
     mailparser = require('mailparser'),
     imap,
@@ -21,26 +22,31 @@ function imapWatch(xoauthEncoded, logger) {
     port: 993,
     secure: true,
     xoauth: xoauthEncoded
-    // debug: function(msg) { console.log(msg); }
+    // , debug: function(msg) { console.log(msg); }
   });
 
-  function die(err) {
+  imap.on('error', function(err) {
     logger.error(err);
-    process.exit(1);
-  }
-  function imapConnect() {
-    imap.connect(function(err) {
-      if (err) die(err);
-      logger.info('IMAP connected.');
-      imap.openBox('INBOX', false, watchInbox);
-    });
-  }
+  });
+  imap.on('close', function(err) {
+    logger.info('IMAP connection closed. Reconnect...');
+    imapWatch(xoauthEncoded, logger);
+  });
+
+  imap.connect(function(err) {
+    if (err) {
+      logger.error(err);
+      process.exit(1);
+    }
+    logger.info('IMAP connected.');
+    imap.openBox('INBOX', false, watchInbox);
+  });
 
   function watchInbox(err, box) {
     imap.search(['UNSEEN'], function(err, results) {
       var fetch;
       if (!results || !results.length) {
-        // console.log('No unread messages');
+        // logger.info('No unread messages. Retry...');
         setTimeout(watchInbox, fetchInterval);
         return;
       }
@@ -58,7 +64,7 @@ function imapWatch(xoauthEncoded, logger) {
         newMessage(msg);
       });
       fetch.on('end', function() {
-        logger.info('end fetch');
+        logger.info('Fetching messages ended.');
         setTimeout(watchInbox, fetchInterval);
       });
     });
@@ -67,8 +73,7 @@ function imapWatch(xoauthEncoded, logger) {
   function newMessage(message) {
     var parser = new mailparser.MailParser();
     parser.on('end', function(mail) {
-      logger.info('New mail');
-      logger.info(mail);
+      logger.info('[mail-fetcher] New mail: ' + mail.subject);
       pubsub.publish('game:emails', JSON.stringify(mail));
     });
     message.on('data', function(data) {
@@ -78,37 +83,17 @@ function imapWatch(xoauthEncoded, logger) {
       parser.end();
     });
   }
-
-  imapConnect();
 }
 
 function main(logger) {
-  xoauthProcess = spawn('python', ['./tools/xoauth.py',
-    '--generate_xoauth_string',
-    '--user=' + xoauthParams.user,
-    '--oauth_token=' + xoauthParams.oauth_token,
-    '--oauth_token_secret=' + xoauthParams.oauth_token_secret]);
-
-  xoauthProcess.stdout.on('data', function (data) {
-    var lines = data.toString().split('\n');
-    for (var i=0; i < lines.length; i++) {
-      var matches = lines[i].match(/^XOAUTH string \(base64\-encoded\): (.+)/);
-      if (matches && matches[1]) {
-        imapWatch(matches[1], logger);
-      }
-    }
-  });
-
-  xoauthProcess.stderr.on('data', function (data) {
-    logger.error('xoauth.py error: ' + data);
-  });
-  xoauthProcess.on('exit', function (code) {
-    if (code != 0) {
-      logger.info('xoauth.py exited with code ' + code);
-    }
-  });
+  var xoauthEncoded = nodemailer.createXOAuthGenerator({
+    requestUrl: 'https://mail.google.com/mail/b/' + xoauthParams.user + '/imap/',
+    user: xoauthParams.user,
+    token: xoauthParams.oauth_token,
+    tokenSecret: xoauthParams.oauth_token_secret
+  }).generate();
+  imapWatch(xoauthEncoded, logger);
 }
-
 
 if (require.main === module) {
   main(require('winston'));

@@ -23,7 +23,8 @@
     "mocha": "1.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "start": "node index"
   },
   "optionalDependencies": {},
   "engines": {
