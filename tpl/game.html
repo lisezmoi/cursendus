@@ -74,6 +74,21 @@ cast [B7]</textarea>
 								<td width="600" height="30"></td>
 							</tr>
 						</table>
+						<% if (game.turn > 1) { %>
+						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
+							<tr>
+								<td width="290" align="left" valign="top">
+									<%= indent %> Not the first turn!
+								</td>
+								<td width="9"></td>
+								<td width="1" bgcolor="#222" style="background-color:#222;"></td>
+								<td width="10"></td>
+								<td width="290" align="left" valign="top">
+									<%= indent %>If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
+								</td>
+							</tr>
+						</table>
+						<% } else { %>
 						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
 							<tr>
 								<td width="290" align="left" valign="top">
@@ -88,6 +103,7 @@ cast [B7]</textarea>
 								</td>
 							</tr>
 						</table>
+						<% } %>
 						<table class="margin" <%- tablereset %>>
 							<tr>
 								<td width="600" height="30"></td>
@@ -255,6 +271,51 @@ cast [B7]</textarea>
 						</table>
 						<% */ %>
 
+						<% if (game.turn > 1) { %>
+						<table class="title" <%- tablereset %> align="center">
+							<tr>
+								<td width="596" height="40" align="center" style="<%= h2 %>">
+									Rules
+								</td>
+							</tr>
+							<tr>
+								<td width="596" height="1" bgcolor="#222222" style="background-color:#222222;"></td>
+							</tr>
+						</table>
+
+						<table <%- tablereset %> style="<%= fontsans %>" align="center">
+							<tr>
+								<td width="600" height="10"></td>
+							</tr>
+							<tr>
+								<td align="left" bgcolor="#333" style="background-color:#333;">
+									<table <%- tablereset %> style="border-style:double; border-width:5px; border-color:#000;">
+										<tr>
+											<td width="600" height="10" colspan="3" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+										<tr>
+											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
+											<td>
+												<h4 style="<%= h4 %>">Credits</h4>
+												<p>
+													Website: <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br>
+													Realisation : <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a><br>
+													Cursendus is <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a>
+												</p>
+											</td>
+											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+										<tr>
+											<td width="600" height="10" colspan="3" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td width="600" height="10"></td>
+							</tr>
+						</table>						
+						<% } else { %>
 						<table class="title" <%- tablereset %> align="center">
 							<tr>
 								<td width="596" height="40" align="center" style="<%= h2 %>">
@@ -308,7 +369,7 @@ cast [B7]</textarea>
 
 												<h4 style="<%= h4 %>">Credits</h4>
 												<p>
-													Website : <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br>
+													Website: <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br>
 													Realisation : <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a><br>
 													Cursendus is <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a>
 												</p>
@@ -325,3 +386,4 @@ cast [B7]</textarea>
 								<td width="600" height="10"></td>
 							</tr>
 						</table>
+						<% } %>
