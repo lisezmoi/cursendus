@@ -23,11 +23,8 @@ describe('game mechanisms', function(){
         game.command(game.player1, 'attack ' + coords);
         game.commandsEnd(game.player1);
         game.commandsEnd(game.player2);
-        assert.equal(game.player2.health, 35);
+        assert(game.player2.health < 40);
       });
-
-      // game.command(game.player1, 'attack d3');
-
     });
   });
 
