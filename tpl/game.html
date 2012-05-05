@@ -103,15 +103,37 @@ attack [B7]</textarea>
 								<% } %>
 								<td width="26"></td>
 							</tr>
+							<% var bgSkin, imgSkin, rowspan, displayTd; %>
 							<% for (var i=0; i < terrain.length; i++) { %>
 							<tr>
 								<td width="26" height="30" background="<%- assetsUrl %>/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
 								<% for (var j=0; j < terrain[i].length; j++) { %>
-									<% if (!terrain[i][j].occupied) { %>
-									<td width="40" <% if (terrain[i+1] && terrain[i+1][j].occupied) { %>rowspan="2" height="60"<% } else { %>height="30"<% } %>
-										background="<%- assetsUrl %>/terrain-<%= terrain[i][j].skin %>.gif">
-										<% if (terrain[i+1] && terrain[i+1][j].occupied) { %>
-										<img src="<%- assetsUrl %>/sorcerer-<%= terrain[i+1][j].occupied.skin %>.gif" width="40" height="60" alt="" style="display:block">
+								<%
+									bgSkin = '';
+									imgSkin = '';
+									rowspan = false;
+									displayTd = true;
+
+									// Dead
+									if (terrain[i][j].occupied && terrain[i][j].occupied.dead) {
+										bgSkin = assetsUrl + '/terrain-ground-death.gif';
+
+									} else {
+										bgSkin = assetsUrl + '/terrain-' + terrain[i][j].skin + '.gif';
+
+										// Occupied
+										if (terrain[i+1] && (terrain[i+1][j].occupied && !terrain[i+1][j].occupied.dead)) {
+											rowspan = true;
+											imgSkin = assetsUrl + '/sorcerer-' + terrain[i+1][j].occupied.skin + '.gif';
+										} else if (terrain[i][j].occupied) {
+											displayTd = false;
+										}
+									}
+								%>
+									<% if (displayTd) { %>
+									<td width="40" <% if (rowspan) { %>rowspan="2" height="60"<% } else { %>height="30"<% } %> background="<%- bgSkin %>">
+										<% if (imgSkin) { %>
+										<img src="<%- imgSkin %>" width="40" height="60" alt="" style="display:block">
 										<% } %>
 									</td>
 									<% } %>
