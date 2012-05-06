@@ -1,48 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>New game</title>
-</head>
-<body style="width:600px;margin:0 auto;">
-
-	<h1>Game #<%= game.id %></h1>
-	<ul>
-		<li>Turn: <%= game.turn %></li>
-	</ul>
-	<h2>Player 1</h2>
-	<ul>
-		<li>ID: <%= game.player1 %></li>
-		<li>
-			Wait for actions? <%= game.player1.wait? 'yes:' : 'no.' %>
-			<% if (game.player1.wait) { %>
-			<ul>
-				<% for (var i in game.player1.waitActions) { if (!game.player1.waitActions.hasOwnProperty(i)) continue; %>
-				<li><%= '[' + i + '] ' + game.player1.waitActions[i] %></li>
-				<% } %>
-			</ul>
-			<% } %>
-		</li>
-		<li>Position: x: <%= game.player1.position[0] %>, y: <%= game.player1.position[1] %></li>
-		<li>Skin ID: <%= game.player1.skin %></li>
-		<li><a href="/game/<%= game.id %>/<%= game.player1 %>">Play as player 1</a></li>
-	</ul>
-	<h2>Player 2</h2>
-	<ul>
-		<li>ID: <%= game.player2 %></li>
-		<li>
-			Wait for actions? <%= game.player2.wait? 'yes:' : 'no.' %>
-			<% if (game.player2.wait) { %>
-			<ul>
-				<% for (var i in game.player2.waitActions) { if (!game.player2.waitActions.hasOwnProperty(i)) continue; %>
-				<li><%= '[' + i + '] ' + game.player2.waitActions[i] %></li>
-				<% } %>
-			</ul>
-			<% } %>
-		</li>
-		<li>Position: x: <%= game.player2.position[1] %>, y: <%= game.player2.position[1] %></li>
-		<li>Skin ID: <%= game.player2.skin %></li>
-		<li><a href="/game/<%= game.id %>/<%= game.player2 %>">Play as player 2</a></li>
-	</ul>
-</body>
-</html>
+	<h1 style="color:#fff">Game #<%= game.id %></h1>
+	<% if (mode === 'http') { %>
+	<%-: ['debug', {'game': game}] | include %>
+	<% } %>
+	<script>
+		document.querySelector('#debug h1').click()
+	</script>
