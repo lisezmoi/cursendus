@@ -1,30 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>New game</title>
-</head>
-<body style="width:600px;margin:0 auto;">
-
-	<h1>Game #<%= game.id %></h1>
-	<ul>
-		<li>Turn: <%= game.turn %></li>
-	</ul>
-	<h2>Player 1</h2>
-	<ul>
-		<li>ID: <%= game.player1 %></li>
-		<li>Is waiting? <%= game.player1.wait? 'yes' : 'no' %></li>
-		<li>Position: x: <%= game.player1.position[0] %>, y: <%= game.player1.position[1] %></li>
-		<li>Skin ID: <%= game.player1.skin %></li>
-		<li><a href="/game/<%= game.id %>/<%= game.player1 %>">Play as player 1</a></li>
-	</ul>
-	<h2>Player 2</h2>
-	<ul>
-		<li>ID: <%= game.player2 %></li>
-		<li>Is waiting? <%= game.player2.wait? 'yes' : 'no' %></li>
-		<li>Position: x: <%= game.player2.position[0] %>, y: <%= game.player2.position[1] %></li>
-		<li>Skin ID: <%= game.player2.skin %></li>
-		<li><a href="/game/<%= game.id %>/<%= game.player2 %>">Play as player 2</a></li>
-	</ul>
-</body>
-</html>
+	<h1 style="color:#fff">Game #<%= game.id %></h1>
+	<% if (mode === 'http') { %>
+	<%-: ['debug', {'game': game}] | include %>
+	<% } %>
+	<script>
+		document.querySelector('#debug h1').click()
+	</script>

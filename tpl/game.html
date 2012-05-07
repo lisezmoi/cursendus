@@ -1,64 +1,5 @@
 						<% if (mode === 'http') { %>
-						<style>
-							/* HTTP specific styles */
-							#debug {
-								overflow: hidden;
-								margin:0 auto 20px auto;
-								padding: 10px 25px;
-								width:550px;
-								background: grey;
-							}
-							#debug p {
-								margin: 0;
-								font-family: sans-serif;
-								color: white;
-							}
-							#debug > p {
-								text-align: center;
-								margin-bottom: 20px;
-							}
-							#debug form {
-								float: left;
-								width: 250px;
-							}
-							#debug form + form {
-								float: right;
-							}
-							#debug textarea {
-								width: 228px;
-								height: 40px;
-								padding: 10px;
-								margin-bottom: 10px;
-								resize: none;
-							}
-							#debug button[type=submit] {
-								display: block;
-								width: 150px;
-								margin: 0 auto;
-								font-size: 18px;
-								line-height: 30px;
-								cursor: pointer;
-							}
-						</style>
-						<div id="debug">
-							<p>Send commands</p>
-							<form action="/game/<%= game.id %>" method="post">
-								<p>
-									<input type="hidden" name="player" value="<%= player1.email %>">
-									<textarea name="command" rows="8" cols="40">move [S]
-cast [L18]</textarea>
-									<button type="submit" style="color:#7b2d6b">Amthyst</button>
-								</p>
-							</form>
-							<form action="/game/<%= game.id %>" method="post">
-								<p>
-									<input type="hidden" name="player" value="<%= player2.email %>">
-									<textarea name="command" rows="8" cols="40">move [N]
-cast [B7]</textarea>
-									<button type="submit">Dr. Black</button>
-								</p>
-							</form>
-						</div>
+						<%-: ['debug', {'game': game}] | include %>
 						<% } %>
 						<%
 						var characters = {
@@ -129,15 +70,37 @@ cast [B7]</textarea>
 								<% } %>
 								<td width="26"></td>
 							</tr>
+							<% var bgSkin, imgSkin, rowspan, displayTd; %>
 							<% for (var i=0; i < terrain.length; i++) { %>
 							<tr>
 								<td width="26" height="30" background="<%- assetsUrl %>/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
 								<% for (var j=0; j < terrain[i].length; j++) { %>
-									<% if (!terrain[i][j].occupied) { %>
-									<td width="40" <% if (terrain[i+1] && terrain[i+1][j].occupied) { %>rowspan="2" height="60"<% } else { %>height="30"<% } %>
-										background="<%- assetsUrl %>/terrain-<%= terrain[i][j].skin %>.gif">
-										<% if (terrain[i+1] && terrain[i+1][j].occupied) { %>
-										<img src="<%- assetsUrl %>/sorcerer-<%= terrain[i+1][j].occupied.skin %>.gif" width="40" height="60" alt="" style="display:block">
+								<%
+									bgSkin = '';
+									imgSkin = '';
+									rowspan = false;
+									displayTd = true;
+
+									// Dead
+									if (terrain[i][j].occupied && terrain[i][j].occupied.dead) {
+										bgSkin = assetsUrl + '/terrain-ground-death.gif';
+
+									} else {
+										bgSkin = assetsUrl + '/terrain-' + terrain[i][j].skin + '.gif';
+
+										// Occupied
+										if (terrain[i+1] && (terrain[i+1][j].occupied && !terrain[i+1][j].occupied.dead)) {
+											rowspan = true;
+											imgSkin = assetsUrl + '/sorcerer-' + terrain[i+1][j].occupied.skin + '.gif';
+										} else if (terrain[i][j].occupied) {
+											displayTd = false;
+										}
+									}
+								%>
+									<% if (displayTd) { %>
+									<td width="40" <% if (rowspan) { %>rowspan="2" height="60"<% } else { %>height="30"<% } %> background="<%- bgSkin %>">
+										<% if (imgSkin) { %>
+										<img src="<%- imgSkin %>" width="40" height="60" alt="" style="display:block">
 										<% } %>
 									</td>
 									<% } %>
@@ -343,10 +306,10 @@ cast [B7]</textarea>
 													move south <br>
 													attack F16
 												</p>
-												<p>As a result of the previous lines, your character will move one square to the south and throw a cast to the square x=F y=16.</p>
+												<p>As a result of the previous lines, your character will move one square to the south and throw a attack to the square x=F y=16.</p>
 
 												<h4 style="<%= h4 %>">Goal</h4>
-												<p>Try to attack your enemy by sending casts to cases. Each attack can take from 8 to 10 life points.</p>
+												<p>Try to attack your enemy by sending attacks to cases. Each attack can take from 8 to 10 life points.</p>
 
 												<h4 style="<%= h4 %>">Important</h4>
 												<p>

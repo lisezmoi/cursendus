@@ -1,0 +1,136 @@
+<style>
+	/* HTTP specific styles */
+	#debug {
+		overflow: hidden;
+		margin:0 auto 20px auto;
+		padding: 10px 25px;
+		width:550px;
+		line-height: 1.3;
+		font-family: sans-serif;
+		color: white;
+		background: grey;
+	}
+	#debug a {
+		color: white;
+	}
+	#debug h1 {
+		margin: 0;
+		text-align: center;
+		font-size: 18px;
+		font-weight: normal;
+		cursor: pointer;
+	}
+	#debug h2 {
+		margin: 0 0 10px;
+		font-size: 16px;
+		font-weight: normal;
+	}
+	#debug h1 + h2 {
+		margin-top: 20px;
+	}
+	#debug p {
+		margin: 0;
+	}
+	#debug ul {
+		margin: 0 0 20px;
+		padding: 0;
+	}
+	#debug form {
+		float: left;
+		width: 250px;
+	}
+	#debug form + form {
+		float: right;
+	}
+	#debug textarea {
+		width: 228px;
+		height: 40px;
+		padding: 10px;
+		margin-bottom: 10px;
+		resize: none;
+	}
+	#debug button[type=submit] {
+		display: block;
+		width: 150px;
+		margin: 0;
+		font-size: 14px;
+		line-height: 20px;
+		cursor: pointer;
+	}
+	#debug > *:not(h1) {
+		display: none;
+	}
+	#debug.opened > *:not(h1) {
+		display: block;
+	}
+</style>
+<div id="debug">
+	<h1>Debug console</h1>
+	<h2>Game</h2>
+	<ul>
+		<li>Game ID: <%= game.id %></li>
+		<li>Turn: <%= game.turn %></li>
+	</ul>
+	<form action="/game/<%= game.id %>" method="post">
+		<h2>Player 1</h2>
+		<ul>
+			<li>ID: <%= game.player1 %></li>
+			<li>
+				Wait for actions? <%= game.player1.wait? 'yes:' : 'no.' %>
+				<% if (game.player1.wait) { %>
+				<ul>
+					<% for (var i in game.player1.waitActions) { if (!game.player1.waitActions.hasOwnProperty(i)) continue; %>
+					<li><%= '[' + i + '] ' + game.player1.waitActions[i] %></li>
+					<% } %>
+				</ul>
+				<% } %>
+			</li>
+			<li>Position: x: <%= game.player1.position[0] %>, y: <%= game.player1.position[1] %></li>
+			<li>Skin ID: <%= game.player1.skin %></li>
+			<li>Health: <%= game.player1.health %></li>
+			<li><a href="/game/<%= game.id %>/<%= game.player1 %>">Play as player 1</a></li>
+		</ul>
+		<p>
+			<input type="hidden" name="player" value="<%= game.player1.email %>">
+			<textarea name="command" rows="8" cols="40">move [S]
+attack [L18]</textarea>
+			<button type="submit">Player 1 command</button>
+		</p>
+	</form>
+	<form action="/game/<%= game.id %>" method="post">
+		<h2>Player 2</h2>
+		<ul>
+			<li>ID: <%= game.player2 %></li>
+			<li>
+				Wait for actions? <%= game.player2.wait? 'yes:' : 'no.' %>
+				<% if (game.player2.wait) { %>
+				<ul>
+					<% for (var i in game.player2.waitActions) { if (!game.player2.waitActions.hasOwnProperty(i)) continue; %>
+					<li><%= '[' + i + '] ' + game.player2.waitActions[i] %></li>
+					<% } %>
+				</ul>
+				<% } %>
+			</li>
+			<li>Position: x: <%= game.player2.position[1] %>, y: <%= game.player2.position[1] %></li>
+			<li>Skin ID: <%= game.player2.skin %></li>
+			<li>Health: <%= game.player2.health %></li>
+			<li><a href="/game/<%= game.id %>/<%= game.player2 %>">Play as player 2</a></li>
+		</ul>
+		<p>
+			<input type="hidden" name="player" value="<%= game.player2.email %>">
+			<textarea name="command" rows="8" cols="40">move [N]
+attack [b7]</textarea>
+			<button type="submit">Player 2 command</button>
+		</p>
+	</form>
+</div>
+<script>
+	(function() {
+		var title, container;
+		container = document.querySelector('#debug');
+		title = document.querySelector('#debug h1');
+		title.onclick = function(){
+			container.classList.toggle('opened');
+		};
+	}());
+</script>
