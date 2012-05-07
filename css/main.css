@@ -169,18 +169,8 @@ body.p404{
 
 /* iPad [portrait + landscape] */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-	header img{
-		width:202px;
-		height:113px;
-		margin:20px 0;
-	}
-	#main .box{
+	canvas{
 		display:block;
-		width:100%;
-		margin:0 0 30px 0;
-	}
-	.boxcontent, #rules, #screenshot{
-		width:100%;
 	}
 }
 
