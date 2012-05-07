@@ -169,7 +169,8 @@ body.p404{
 
 /* iPad [portrait + landscape] */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-	canvas{
+	body canvas{
+		top:400px;
 		display:block;
 	}
 }
