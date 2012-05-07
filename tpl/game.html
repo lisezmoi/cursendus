@@ -60,45 +60,55 @@ cast [B7]</textarea>
 							</form>
 						</div>
 						<% } %>
+						<%
+						var characters = {
+							1: {
+								name: 'Amthyst',
+								hat: ['hat-1-large.gif', 53, 47],
+								colorName: 'purple',
+								color: '#C77AD3'
+							},
+							2: {
+								name: 'Dr. Black',
+								hat: ['hat-2-large.gif', 53, 23],
+								colorName: 'dark',
+								color: '#FFFFFF'
+							}
+						};
+						%>
 
 						<table <%- tablereset %>>
 							<tr>
-								<td width="600" height="164" align="center">
-									<img src="<%- assetsUrl %>/logo.gif" width="290" height="157" alt="Cursendus">
+							<% if (game.turn > 1) { %>
+								<td width="600" height="77" align="center">
+									<img src="<%- assetsUrl %>/logo-min.gif" width="137" height="77" alt="Cursendus">
 								</td>
+							<% } %>
 							</tr>
 						</table>
 
+						<% if (game.turn > 1) { %>
+						<table class="margin" <%- tablereset %>>
+							<tr>
+								<td width="600" height="10"></td>
+							</tr>
+						</table>
+						<% } else { %>
 						<table class="margin" <%- tablereset %>>
 							<tr>
 								<td width="600" height="30"></td>
 							</tr>
 						</table>
-						<% if (game.turn > 1) { %>
 						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
 							<tr>
 								<td width="290" align="left" valign="top">
-									<%= indent %> Not the first turn!
+									<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody <%- characters[player.skin].name %>, a <%- characters[player.skin].colorName %> sorcerer and you are about to defy Dr. Black.
 								</td>
 								<td width="9"></td>
 								<td width="1" bgcolor="#222" style="background-color:#222;"></td>
 								<td width="10"></td>
 								<td width="290" align="left" valign="top">
-									<%= indent %>If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
-								</td>
-							</tr>
-						</table>
-						<% } else { %>
-						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
-							<tr>
-								<td width="290" align="left" valign="top">
-									<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody Amthyst, a purple sorcerer and you are about to defy Dr. Black.
-								</td>
-								<td width="9"></td>
-								<td width="1" bgcolor="#222" style="background-color:#222;"></td>
-								<td width="10"></td>
-								<td width="290" align="left" valign="top">
-									<%= indent %> You can move and cast each turn, to do so, learn about the rules at the bottom of this email.<br>
+									<%= indent %> You can move and attack each turn, to do so, learn about the rules at the bottom of this email or on the <a href="http://cursend.us/">website</a>.<br>
 									If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
 								</td>
 							</tr>
@@ -162,22 +172,6 @@ cast [B7]</textarea>
 								<td width="600" height="20"></td>
 							</tr>
 						</table>
-
-
-						<%
-						var characters = {
-							1: {
-								name: 'Amthyst',
-								hat: ['hat-1-large.gif', 53, 47],
-								color: '#C77AD3'
-							},
-							2: {
-								name: 'Dr. Black',
-								hat: ['hat-2-large.gif', 53, 23],
-								color: '#FFFFFF'
-							}
-						};
-						%>
 						<table class="playersInfo" <%- tablereset %> style="<%= fontsans %>" align="center">
 							<tr>
 								<td width="600" height="10" colspan="3"></td>
@@ -193,6 +187,11 @@ cast [B7]</textarea>
 										<tr>
 											<td width="320" height="30">
 												<span style="color:<%- characters[player.skin].color %>;"><%- characters[player.skin].name %></span> (you)
+											</td>
+										</tr>
+										<tr>
+											<td width="320">
+												email: <%= player.email %>
 											</td>
 										</tr>
 										<tr>
@@ -221,6 +220,11 @@ cast [B7]</textarea>
 										<tr>
 											<td width="260" height="30" align="center">
 												<span style="color:#<%- characters[otherPlayer.skin].color %>;"><%- characters[otherPlayer.skin].name %></span>
+											</td>
+										</tr>
+										<tr>
+											<td width="260" align="center">
+												email: <%= otherPlayer.email %>
 											</td>
 										</tr>
 										<tr>
@@ -272,21 +276,8 @@ cast [B7]</textarea>
 						<% */ %>
 
 						<% if (game.turn > 1) { %>
-						<table class="title" <%- tablereset %> align="center">
-							<tr>
-								<td width="596" height="40" align="center" style="<%= h2 %>">
-									Rules
-								</td>
-							</tr>
-							<tr>
-								<td width="596" height="1" bgcolor="#222222" style="background-color:#222222;"></td>
-							</tr>
-						</table>
 
 						<table <%- tablereset %> style="<%= fontsans %>" align="center">
-							<tr>
-								<td width="600" height="10"></td>
-							</tr>
 							<tr>
 								<td align="left" bgcolor="#333" style="background-color:#333;">
 									<table <%- tablereset %> style="border-style:double; border-width:5px; border-color:#000;">
@@ -296,11 +287,8 @@ cast [B7]</textarea>
 										<tr>
 											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
 											<td>
-												<h4 style="<%= h4 %>">Credits</h4>
 												<p>
-													Website: <a style="<%= link %>" href="http://cursend.us">http://cursend.us</a><br>
-													Realisation : <a style="<%= link %>" href="http://pierrebertet.net">Pierre Bertet</a>, <a style="<%= link %>" href="http://raphaelbastide.com">Raphaël Bastide</a><br>
-													Cursendus is <a style="<%= link %>" href="https://github.com/bpierre/cursendus">open source</a>
+													How to play: <a style="<%= link %>" href="http://cursend.us#rules">Rules</a>
 												</p>
 											</td>
 											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
