@@ -64,21 +64,18 @@
 						</table>
 						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
 							<tr>
-								<td width="290" align="left" valign="top">
-									<%= indent %> Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email. You embody <%- characters[player.skin].name %>, a <%- characters[player.skin].colorName %> sorcerer and you are about to defy Dr. Black.
-								</td>
-								<td width="9"></td>
-								<td width="1" bgcolor="#222" style="background-color:#222;"></td>
-								<td width="10"></td>
-								<% if (player.dead) { %>
-								<td width="290" align="left" valign="top">
-									<%= indent %>You ae dead!
-								</td>
-								<% } else if (otherPlayer.dead) { %>
-								<td width="290" align="left" valign="top">
-									<%= indent %>Thou win!
-								</td>
+								<td>
+								<% if (player.dead && player.skin === 1) { %>
+									<img src="<%- assetsUrl %>/amthyst-defeat.gif" width="600" height="196" alt="Amthyst is dead. You lose.">
+								<% } else if (otherPlayer.dead && player.skin === 1){ %>
+									<img src="<%- assetsUrl %>/amthyst-victory.gif" width="600" height="196" alt="Hooray! You win!">
+								<% } else if (player.dead && player.skin === 2){ %>
+									<img src="<%- assetsUrl %>/drblack-defeat.gif" width="600" height="196" alt="Dr. Black is dead. You lose.">
+								<% } else if (otherPlayer.dead && player.skin === 2){ %>
+									<img src="<%- assetsUrl %>/drblack-victory.gif" width="600" height="196" alt="Hooray! You win!">
 								<% } %>
+
+								<td>
 							</tr>
 						</table>
 						<% } %>
