@@ -95,7 +95,7 @@
 								<% } %>
 								<td width="26"></td>
 							</tr>
-							<% var bgSkin, imgSkin, rowspan, displayTd; %>
+							<% var bgSkin, imgSkin, rowspan, displayTd, traceSkin; %>
 							<% for (var i=0; i < terrain.length; i++) { %>
 							<tr>
 								<td width="26" height="30" background="<%- assetsUrl %>/tabletab-west.gif" style="<%= fontserif %>text-align:center;"><b><%=i+1 %></b></td>
@@ -105,6 +105,7 @@
 									imgSkin = '';
 									rowspan = false;
 									displayTd = true;
+									traceSkin = '';
 
 									// Dead
 									if (terrain[i][j].occupied && terrain[i][j].occupied.dead) {
@@ -119,6 +120,10 @@
 											imgSkin = assetsUrl + '/sorcerer-' + terrain[i+1][j].occupied.skin + '.gif';
 										} else if (terrain[i][j].occupied) {
 											displayTd = false;
+										
+										// Traced
+										} else if (terrain[i][j].traced) {
+											traceSkin = assetsUrl + '/trace-' + terrain[i][j].traced + '.gif';
 										}
 									}
 								%>
@@ -126,6 +131,8 @@
 									<td width="40" <% if (rowspan) { %>rowspan="2" height="60"<% } else { %>height="30"<% } %> background="<%- bgSkin %>">
 										<% if (imgSkin) { %>
 										<img src="<%- imgSkin %>" width="40" height="60" alt="" style="display:block">
+										<% } else if (traceSkin) { %>
+										<img src="<%- traceSkin %>" width="40" height="30" alt="" style="display:block">
 										<% } %>
 									</td>
 									<% } %>

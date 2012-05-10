@@ -6,12 +6,16 @@ You can use multiple commands at once.
 
 Example:
 
-    move EAST
+    trace EAST
     attack C10
 
-## move [direction]
 
-The `move` command allows for moving the character to the chosen direction.
+## trace [direction]
+
+The `trace` command:
+
+- moves the character to the chosen direction
+- trace a magic segment on the previously occupied square
 
 Available directions:
 
@@ -22,9 +26,10 @@ Available directions:
 
 Examples:
 
-	move north
-	move EAST
-	move S
+	trace north
+	trace EAST
+	trace S
+
 
 ## attack [position]
 
@@ -35,3 +40,11 @@ Examples:
 	attack d10
 	attack C15
 	attack 10d
+
+
+## move [direction]
+
+The `move` command allows for moving the character to the chosen direction.
+
+Available directions: same as the command `trace [direction]`
+
