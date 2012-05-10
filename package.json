@@ -20,7 +20,8 @@
     "winston": "0.5"
   },
   "devDependencies": {
-    "mocha": "1.0"
+    "mocha": "1.0",
+    "yuidocjs": "0.3.0"
   },
   "scripts": {
     "test": "make test",

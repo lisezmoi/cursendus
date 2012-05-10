@@ -9,6 +9,7 @@ lib-cov
 *.tmproj
 .DS_Store
 config.json
+doc_api
 
 pids
 logs

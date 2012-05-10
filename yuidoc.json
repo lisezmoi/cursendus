@@ -1,0 +1,12 @@
+{
+  "name": "Cursendus API",
+  "description": "Cursendus",
+  "version": "0.0.1",
+  "url": "http://cursend.us/",
+  "options": {
+    "outdir": "./doc_api",
+    "paths": [
+      "./lib"
+    ]
+  }
+}
