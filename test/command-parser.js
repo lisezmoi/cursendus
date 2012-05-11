@@ -71,4 +71,33 @@ describe('command-parser', function(){
     }
   });
 
+  it('should parse an invoke command', function() {
+    var res,
+        valid = [
+          ['invoke fb', 'fb'],
+          ['invoke ib', 'ib'],
+          ['invoke iB', 'ib'],
+          ['invoke FB', 'fb'],
+          ['INVoke FB', 'fb']
+        ],
+        notValid = [
+          'invoke f',
+          'invok fb',
+          'invoke 1',
+          'invoke ibb'
+        ];
+
+    // Valid
+    for (var i=0; i < valid.length; i++) {
+      res = commandParser(valid[i][0]);
+      assert.equal(res.action, 'invoke');
+      assert.equal(res.value, valid[i][1]);
+    }
+    // Not valid
+    for (var i=0; i < notValid.length; i++) {
+      res = commandParser(notValid[i]);
+      assert.equal(res, false);
+    }
+  });
+
 });
