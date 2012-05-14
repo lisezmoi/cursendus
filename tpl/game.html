@@ -29,15 +29,37 @@
 						</table>
 
 						<% if (game.turn > 1) { %>
-						<table class="margin" <%- tablereset %>>
+						<table <%- tablereset %> style="<%= h4 %>" align="center">
 							<tr>
 								<td width="600" height="10"></td>
+							</tr>
+
+							<tr>
+								<td bgcolor="#333" style="background-color:#333;">
+									<table <%- tablereset %> style="border-style:double; border-width:5px; border-color:#000;">
+										<tr>
+											<td width="600" height="5" colspan="3" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+										<tr>
+											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
+											<td align="center">
+												<p>
+													Turn <%= turn %> <%= indent %><%= indent %> You are Playing with <%= otherPlayer.email %>.
+												</p>
+											</td>
+											<td width="10" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+										<tr>
+											<td width="600" height="5" colspan="3" bgcolor="#333" style="background-color:#333;"></td>
+										</tr>
+									</table>
+								</td>
 							</tr>
 						</table>
 						<% } else { %>
 						<table class="margin" <%- tablereset %>>
 							<tr>
-								<td width="600" height="30"></td>
+								<td width="600" height="10"></td>
 							</tr>
 						</table>
 						<table <%- tablereset %> align="center" style="<%= fontinfo %>">
@@ -149,21 +171,7 @@
 								<td width="26"></td>
 							</tr>
 						</table>
-						<table class="margin" <%- tablereset %>>
-							<tr>
-								<td width="600" height="30"></td>
-							</tr>
-						</table>
 						<table class="gameInfos" <%- tablereset %> align="center" style="<%= fontsans %>">
-							<tr>
-								<td width="190" height="40" style="text-align:center; <%= h2 %>">
-									Turn <%= turn %>
-								</td>
-							</tr>
-							<tr>
-								<td width="596" height="1" bgcolor="#222" style="background-color:#222;"></td>
-							</tr>
-							<tr>
 								<td width="600" height="20"></td>
 							</tr>
 						</table>
@@ -182,11 +190,6 @@
 										<tr>
 											<td width="320" height="30">
 												<span style="color:<%- characters[player.skin].color %>;"><%- characters[player.skin].name %></span> (you)
-											</td>
-										</tr>
-										<tr>
-											<td width="320">
-												email: <%= player.email %>
 											</td>
 										</tr>
 										<tr>
@@ -219,11 +222,6 @@
 										</tr>
 										<tr>
 											<td width="260" align="center">
-												email: <%= otherPlayer.email %>
-											</td>
-										</tr>
-										<tr>
-											<td width="260" align="center">
 												Health: <%= otherPlayer.health %>
 											</td>
 										</tr>
@@ -239,7 +237,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="600" height="40" colspan="3"></td>
+								<td width="600" height="20" colspan="3"></td>
 							</tr>
 						</table>
 
@@ -265,7 +263,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="600" height="40" colspan="5"></td>
+								<td width="600" height="20" colspan="5"></td>
 							</tr>
 						</table>
 						<% */ %>
@@ -312,7 +310,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="600" height="40"></td>
+								<td width="600" height="20"></td>
 							</tr>
 						</table>
 
