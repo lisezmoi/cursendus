@@ -31,7 +31,7 @@ mixin terrain_rows()
         b= y + 1
 
       each cell, x in rowcells
-        - var bgskin = puburl + '/terrain-' + cell.ground.type + '-' + cell.ground.skin + '.gif'
+        - var bgskin = puburl + 'terrain-' + cell.ground.type + '-' + cell.ground.skin + '.gif'
         - var nextOccupant = game.occupant(x, y + 1)
         - var occupant = game.occupant(x, y)
         if nextOccupant
@@ -41,7 +41,7 @@ mixin terrain_rows()
           if (rivalPosition[0] === nextOccupant.position[0])
             - suffix = nextOccupant.id === 1? '' : '-w'
           td(width='40', height='30', background=bgskin, rowspan=2)
-            img(src=puburl+'/sorcerer-' + nextOccupant.id + suffix + '.gif', width=40, height=60, alt='', style='display:block')
+            img(src=puburl+'sorcerer-' + nextOccupant.id + suffix + '.gif', width=40, height=60, alt='', style='display:block')
         else if !occupant
           td(width='40', height='30', background=bgskin)
 
