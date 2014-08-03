@@ -35,8 +35,13 @@ mixin terrain_rows()
         - var nextOccupant = game.occupant(x, y + 1)
         - var occupant = game.occupant(x, y)
         if nextOccupant
+          - var rival = game.currentTurn()['char' + (nextOccupant.id === 1? 2 : 1)];
+          - var rivalPosition = rival.position;
+          - var suffix = rivalPosition[0] < nextOccupant.position[0]? '-w' : '';
+          if (rivalPosition[0] === nextOccupant.position[0])
+            - suffix = nextOccupant.id === 1? '' : '-w'
           td(width='40', height='30', background=bgskin, rowspan=2)
-            img(src=puburl+'/sorcerer-1.gif', width=40, height=60, alt='', style='display:block')
+            img(src=puburl+'/sorcerer-' + nextOccupant.id + suffix + '.gif', width=40, height=60, alt='', style='display:block')
         else if !occupant
           td(width='40', height='30', background=bgskin)
 
@@ -44,52 +49,48 @@ mixin terrain_rows()
       td(width='26', height='30', background=puburl+'tabletab-east.gif', style=fontserif+'text-align:center;')
         b= y + 1
 
-doctype
++table()
+  tr
+    td(width=600, height=77, align='center')
+      img(src=puburl + 'logo-min.gif', width=137, height=77, alt='Cursendus')
 
-body(style='width:600px;margin:50px auto;background:black')
++spacer(30)
 
-  +table()
+if game.turns.length > 1
+  // +table()(style=h4_style)
     tr
-      td(width=600, height=77, align='center')
-        img(src=puburl + 'logo-min.gif', width=137, height=77, alt='Cursendus')
+      td(bgcolor='#333', style='background-color:#333;')
+        +table()(style='border-style:double; border-width:5px; border-color:#000;')
+          tr
+            td(width=600, height=5, colspan=3, bgcolor='#333', style='background-color:#333;')
+          tr
+            td(width=10, bgcolor='#333', style='background-color:#333;')
+            td(align='center')
+              p
+                Turn [turn] You are Playing with [otherPlayer.email].
+            td(width=10, bgcolor='#333', style='background-color:#333;')
+          tr
+            td(width=600, height=5, colspan=3, bgcolor='#333', style='background-color:#333;')
+
+else
+  +table()(style=info_style, align='center')
+    tr
+      td(width=290, align='left', valign='top').
+        Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email.
+        You embody [characters[player.skin].name], a [characters[player.skin].colorName] sorcerer and you are about to defy [characters[otherPlayer.skin].name].
+      td(width='9')
+      td(width='1', bgcolor='#222', style='background-color:#222;')
+      td(width='10')
+      td(width='290' align='left' valign='top').
+        You can move and attack each turn, to do so, learn about the rules at the bottom of this email or on the <a href="http://cursend.us/">website</a>.<br>
+        If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
 
   +spacer(30)
 
-  if game.turns.length > 1
-    +table()(style=h4_style)
-      tr
-        td(bgcolor='#333', style='background-color:#333;')
-          +table()(style='border-style:double; border-width:5px; border-color:#000;')
-            tr
-              td(width=600, height=5, colspan=3, bgcolor='#333', style='background-color:#333;')
-            tr
-              td(width=10, bgcolor='#333', style='background-color:#333;')
-              td(align='center')
-                p
-                  Turn [turn] You are Playing with [otherPlayer.email].
-              td(width=10, bgcolor='#333', style='background-color:#333;')
-            tr
-              td(width=600, height=5, colspan=3, bgcolor='#333', style='background-color:#333;')
-
-  else
-    +table()(style=info_style, align='center')
-      tr
-        td(width=290, align='left', valign='top').
-          Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email.
-          You embody [characters[player.skin].name], a [characters[player.skin].colorName] sorcerer and you are about to defy [characters[otherPlayer.skin].name].
-        td(width='9')
-        td(width='1', bgcolor='#222', style='background-color:#222;')
-        td(width='10')
-        td(width='290' align='left' valign='top').
-          You can move and attack each turn, to do so, learn about the rules at the bottom of this email or on the <a href="http://cursend.us/">website</a>.<br>
-          If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
-
-    +spacer(30)
-
-  +table()
-    tr
-      td(width='600')
-        +table()(align='center')
-          +letters_row('north')
-          +terrain_rows()
-          +letters_row('south')
++table()
+  tr
+    td(width='600')
+      +table()(align='center')
+        +letters_row('north')
+        +terrain_rows()
+        +letters_row('south')

@@ -1,0 +1,34 @@
+doctype
+
+style
+  | .debug {
+  |   position: absolute;
+  |   top: 0;
+  |   left: 0;
+  |   color: white;
+  | }
+  | .debug h2 {
+  |   font-size: 16px;
+  | }
+
+mixin command(value, label)
+  button(type='submit', name='command', value=value)
+    = label
+
+body(style='width:600px;margin:50px auto;background:black')
+  form(action='/command', method='post')
+    div.debug
+      div.p1
+        h2 Amthyst
+        +command('p1-left', '←')
+        +command('p1-bottom', '↓')
+        +command('p1-top', '↑')
+        +command('p1-right', '→')
+      div.p2
+        h2 Dr. Black
+        +command('p2-left', '←')
+        +command('p2-bottom', '↓')
+        +command('p2-top', '↑')
+        +command('p2-right', '→')
+
+  != gameView
