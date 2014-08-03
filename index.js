@@ -1,19 +1,23 @@
-var TERRAIN_WIDTH = 13;
-var TERRAIN_HEIGHT = 16;
-var TERRAIN_SKY_HEIGHT = 2;
+var GAME_WIDTH = 13;
+var GAME_HEIGHT = 16;
+var SKY_HEIGHT = 2;
 
-var util = require('util');
+var inspect = require('./lib/utils2').inspect;
 var makeGame = require('./lib/game').create;
 var makeTerrain = require('./lib/terrain').create;
 var makeTurn = require('./lib/turn').create;
+var makeHtmlRenderer = require('./lib/renderers/html');
 
 var players = {
   p1: { email: 'john@example.com' },
   p2: { email: 'dave@example.com' }
 };
 
-var terrain = makeTerrain(TERRAIN_WIDTH, TERRAIN_HEIGHT, TERRAIN_SKY_HEIGHT);
-var turn = makeTurn(players, terrain);
-var game = makeGame(players, terrain, turn);
+var terrain = makeTerrain(GAME_WIDTH, GAME_HEIGHT, SKY_HEIGHT);
+var firstTurn = makeTurn(players, terrain);
+var game = makeGame(players, terrain, firstTurn);
 
-console.log(util.inspect(game, { colors: true, depth: 20 }));
+var renderHtml = makeHtmlRenderer(__dirname + '/templates');
+
+// inspect(game);
+console.log(renderHtml(game));

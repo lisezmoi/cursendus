@@ -11,6 +11,7 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^0.4.0",
+    "jade": "^1.5.0",
     "node-uuid": "^1.4.1"
   },
   "devDependencies": {},

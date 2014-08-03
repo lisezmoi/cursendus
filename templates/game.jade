@@ -1,0 +1,95 @@
+- var fontserif = 'font-family:serif;font-size:10px;font-weight:normal;color:#999999;'
+- var h2_style = 'font-family:Times New Roman,serif;font-size:20px;font-weight:normal;letter-spacing:1px;color:#999999;'
+- var h4_style = 'font-family:Times New Roman,serif;font-size:16px;font-weight:normal;letter-spacing:1px;color:#C2C2C2;'
+- var info_style = 'font-family:\'Times New Roman\', serif;font-size:12px;font-weight:normal;letter-spacing:1px;color:#999999;'
+- var indent = '&nbsp;&nbsp;'
+
+mixin table()
+  table(align!=attributes.align, cellpadding=0, cellspacing=0, border=0, style!=attributes.style)
+    block
+
+mixin spacer(height)
+  +table()
+    tr
+      td(width=600, height=height)
+
+mixin letters_row(direction)
+  tr
+    td(width='26')
+    - var letters = 'ABCDEFGHIJKLMNOPQRSTUVW'.split('')
+    - var i = -1
+    while ++i < game.terrain.width
+      td(width='40', height='20', background=puburl+'tabletab-'+direction+'.gif', style=fontserif+'text-align:center;')
+          b= letters[i]
+    td(width='26')
+
+mixin terrain_rows()
+  each rowcells, y in game.terrain.cells
+    tr
+      // Letter
+      td(width='26', height='30', background=puburl+'tabletab-west.gif', style=fontserif+'text-align:center;')
+        b= y + 1
+
+      each cell, x in rowcells
+        - var bgskin = puburl + '/terrain-' + cell.ground.type + '-' + cell.ground.skin + '.gif'
+        - var nextOccupant = game.occupant(x, y + 1)
+        - var occupant = game.occupant(x, y)
+        if nextOccupant
+          td(width='40', height='30', background=bgskin, rowspan=2)
+            img(src=puburl+'/sorcerer-1.gif', width=40, height=60, alt='', style='display:block')
+        else if !occupant
+          td(width='40', height='30', background=bgskin)
+
+      // Letter
+      td(width='26', height='30', background=puburl+'tabletab-east.gif', style=fontserif+'text-align:center;')
+        b= y + 1
+
+doctype
+
+body(style='width:600px;margin:50px auto;background:black')
+
+  +table()
+    tr
+      td(width=600, height=77, align='center')
+        img(src=puburl + 'logo-min.gif', width=137, height=77, alt='Cursendus')
+
+  +spacer(30)
+
+  if game.turns.length > 1
+    +table()(style=h4_style)
+      tr
+        td(bgcolor='#333', style='background-color:#333;')
+          +table()(style='border-style:double; border-width:5px; border-color:#000;')
+            tr
+              td(width=600, height=5, colspan=3, bgcolor='#333', style='background-color:#333;')
+            tr
+              td(width=10, bgcolor='#333', style='background-color:#333;')
+              td(align='center')
+                p
+                  Turn [turn] You are Playing with [otherPlayer.email].
+              td(width=10, bgcolor='#333', style='background-color:#333;')
+            tr
+              td(width=600, height=5, colspan=3, bgcolor='#333', style='background-color:#333;')
+
+  else
+    +table()(style=info_style, align='center')
+      tr
+        td(width=290, align='left', valign='top').
+          Congratulation, you have been invited to play to Cursendus, a sorcerer battle game through email.
+          You embody [characters[player.skin].name], a [characters[player.skin].colorName] sorcerer and you are about to defy [characters[otherPlayer.skin].name].
+        td(width='9')
+        td(width='1', bgcolor='#222', style='background-color:#222;')
+        td(width='10')
+        td(width='290' align='left' valign='top').
+          You can move and attack each turn, to do so, learn about the rules at the bottom of this email or on the <a href="http://cursend.us/">website</a>.<br>
+          If you don't want to receive this email anymore and leave this game, click <a style="color:#ACAC63;" href="#">refuse</a>.
+
+    +spacer(30)
+
+  +table()
+    tr
+      td(width='600')
+        +table()(align='center')
+          +letters_row('north')
+          +terrain_rows()
+          +letters_row('south')
