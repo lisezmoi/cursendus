@@ -16,24 +16,26 @@ function env(name, defaultValue) {
 }
 
 var TPL_PATH = env('TPL_PATH', __dirname + '/templates');
+var DATA_PATH = env('DATA_PATH', __dirname + '/data');
 var PUBLIC_URL = env('PUBLIC_URL');
+var WEBSERVER_PORT = env('WEBSERVER_PORT', 3000);
 
 var inspect = require('./lib/utils2').inspect;
-var makeGame = require('./lib/game').create;
-var makeTerrain = require('./lib/terrain').create;
-var makeTurn = require('./lib/turn').createFirst;
+var makeGameManager = require('./lib/game-manager');
 var webserver = require('./lib/webserver');
 
-var players = {
-  p1: { email: 'john@example.com' },
-  p2: { email: 'dave@example.com' }
-};
+var gameManager = makeGameManager(DATA_PATH, {
+  gameWidth: GAME_WIDTH,
+  gameHeight: GAME_HEIGHT,
+  skyHeight: SKY_HEIGHT
+});
 
-var terrain = makeTerrain(GAME_WIDTH, GAME_HEIGHT, SKY_HEIGHT);
-var firstTurn = makeTurn(players, terrain);
-var game = makeGame(players, terrain, firstTurn);
-
-webserver(game, TPL_PATH, PUBLIC_URL, 3000);
+webserver({
+  tplPath: TPL_PATH,
+  publicUrl: PUBLIC_URL,
+  port: WEBSERVER_PORT,
+  gameManager: gameManager
+});
 
 // inspect(game);
 // console.log(renderHtml(game));

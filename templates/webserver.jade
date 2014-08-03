@@ -10,22 +10,32 @@ style
   | .debug h2 {
   |   font-size: 16px;
   | }
+  | .debug .infos {
+  |   margin-top: 20px;
+  | }
 
 mixin command(value, label)
   button(type='submit', name='command', value=value)
     = label
 
 body(style='width:600px;margin:50px auto;background:black')
-  form(action='/command', method='post')
+  form(action='/game/'+ game.id +'/command', method='post')
     div.debug
+      div.infos
+        | Game ID: 
+        =game.id
       div.p1
-        h2 Amthyst
+        h2
+          | Amthyst
+          =' ('+game.players.p1.email+')'
         +command('p1-left', '←')
         +command('p1-bottom', '↓')
         +command('p1-top', '↑')
         +command('p1-right', '→')
       div.p2
-        h2 Dr. Black
+        h2
+          | Dr. Black
+          =' ('+game.players.p2.email+')'
         +command('p2-left', '←')
         +command('p2-bottom', '↓')
         +command('p2-top', '↑')
