@@ -1,34 +1,24 @@
 {
-  "author": "Pierre Bertet <bonjour@pierrebertet.net> (http://pierrebertet.net)",
+  "author": "LISEZMOI <contact@lisezmoi.org> (http://lisezmoi.org/)",
   "name": "cursendus",
   "version": "0.0.0",
-  "homepage": "https://github.com/bpierre/cursendus",
+  "homepage": "http://cursend.us/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bpierre/cursendus.git"
+    "url": "git://github.com/lisezmoi/cursendus.git"
   },
+  "license": "AGPL-3.0",
   "main": "index.js",
   "dependencies": {
-    "async": "0.1",
-    "connect": "2.1",
-    "ejs": "0.7",
-    "redis": "0.7.1",
-    "underscore": "1.3",
-    "imap": "0.3",
-    "mailparser": "0.2",
-    "nodemailer": "0.3",
-    "winston": "0.5"
+    "body-parser": "^1.5.2",
+    "dotenv": "^0.4.0",
+    "express": "^4.7.2",
+    "jade": "^1.5.0",
+    "node-uuid": "^1.4.1"
   },
-  "devDependencies": {
-    "mocha": "1.0",
-    "yuidocjs": "0.3.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "make test",
     "start": "node index"
-  },
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
   }
 }
