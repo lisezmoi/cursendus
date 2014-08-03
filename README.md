@@ -11,7 +11,25 @@ See [doc/manual](https://github.com/bpierre/cursendus/blob/master/doc/manual).
 ## Installation
 
 ```
+$ git clone git@github.com:lisezmoi/cursendus.git
+$ cd cursendus
 $ npm install
+```
+
+## Configuration
+
+Create a file named `.env` in the root directory, and fill it with these values:
+
+```
+# The public URL should point to the `public/` directory,
+# and should include a final slash.
+PUBLIC_URL=http://cursendus-server/
+```
+
+## Start
+
+```
+$ npm start
 ```
 
 ## Copying
