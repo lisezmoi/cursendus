@@ -71,6 +71,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'concat min cssmin screenshot');
+  grunt.registerTask('default', 'concat min cssmin');
 
 };

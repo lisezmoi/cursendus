@@ -50,7 +50,7 @@ section h2{
 	min-height:145px;
 	min-width:200px;
 	margin:1% 1.5%;
-	padding:35px 1% 0px 1%;
+	padding:20px 1% 0px 1%;
 	background:#1A1817;
 	border-top:1px solid #332D2B;
 	border-left:1px solid #262120;
@@ -172,6 +172,7 @@ body.p404{
 	body canvas{
 		top:400px;
 		display:block;
+		position:absolute;
 	}
 }
 
