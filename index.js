@@ -19,6 +19,7 @@ var TPL_PATH = env('TPL_PATH', __dirname + '/templates');
 var DATA_PATH = env('DATA_PATH', __dirname + '/data');
 var PUBLIC_URL = env('PUBLIC_URL');
 var WEBSERVER_PORT = env('WEBSERVER_PORT', 3000);
+var DEBUG = env('DEBUG', false);
 
 var inspect = require('./lib/utils2').inspect;
 var makeGameManager = require('./lib/game-manager');
@@ -34,8 +35,6 @@ webserver({
   tplPath: TPL_PATH,
   publicUrl: PUBLIC_URL,
   port: WEBSERVER_PORT,
-  gameManager: gameManager
+  gameManager: gameManager,
+  reloadTemplates: DEBUG
 });
-
-// inspect(game);
-// console.log(renderHtml(game));
