@@ -1,0 +1,13 @@
+doctype
+html
+  head
+    style body, a{ background:black; color:white; }
+  body
+    form(action='/new', method='post')
+      p
+        button New game
+      h2 Active games:
+      ul
+        each game in games
+          li
+            a(href='/game/'+game.id)= game.players.p1.email + ' vs. ' + game.players.p2.email
